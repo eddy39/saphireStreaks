@@ -3,7 +3,7 @@ using System;
 
 public class Gems : Node2D
 {
-	[Export] public Color ColorType;
+	[Export] public Color Color;
 	public override void _Ready()
 	{
 		
@@ -17,6 +17,6 @@ public class Gems : Node2D
 
 	public enum Color 
 	{
-		Blue, Yellow, Red, Purple
+		Blue, Yellow, Red Purple
 	}
 }
