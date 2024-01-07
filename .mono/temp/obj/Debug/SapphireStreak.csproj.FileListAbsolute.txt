@@ -1,0 +1,9 @@
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\bin\Debug\SapphireStreak.dll
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\bin\Debug\SapphireStreak.pdb
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.csproj.AssemblyReference.cache
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.AssemblyInfoInputs.cache
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.AssemblyInfo.cs
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.csproj.CoreCompileInputs.cache
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.dll
+E:\Projekte\GodotProjects\SaphireStreaks\SapphireStreaks\.mono\temp\obj\Debug\SapphireStreak.pdb
