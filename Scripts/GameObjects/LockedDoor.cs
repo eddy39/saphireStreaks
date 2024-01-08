@@ -1,25 +1,35 @@
 using Godot;
 using System;
 
-public class LockedDoor : Node2D
+public class LockedDoor : StaticBody2D
 {
-    private Interactables Interactable;
+    [Export] public Gem.Color DoorColor;
+    private Sprite DoorSprite;
     private CollisionShape2D Collider;
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Interactable.Interacted += () => {
-            
+        this.DoorSprite = this.GetNode<Sprite>("Sprite");
+        this.Collider = this.GetNode<CollisionShape2D>("Collider");
+
+        // I tried to avoid using singleton but ok
+
+        // On gems updated, check if the color matches with door color
+        // if matches sets the sprite's transparency to 0.5 (temporary)
+        // and disable its collision
+
+        GameState.GemsUpdatedNotifier += (color) => {
+            if (DoorColor == color)
+            {
+                this.DoorSprite.Modulate = new Color
+                (
+                    this.DoorSprite.Modulate.r,
+                    this.DoorSprite.Modulate.g,
+                    this.DoorSprite.Modulate.b,
+                    0.5f
+                );
+
+                Collider.Disabled = true;
+            }
         };
     }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
