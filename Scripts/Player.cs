@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Player : KinematicBody2D
 {
     // vars
-    private Vector2 velocity = new Vector2();
+    public Vector2 velocity = new Vector2();
     private bool isJumping = false;
     private bool wasJustOnFloor = false;
     private bool fallQuick = false;
@@ -22,12 +22,65 @@ public class Player : KinematicBody2D
     public float slowFallFactor = 0.5f;
     public float coyoteTimeLimit = .1f;
     public float bufferJumpTimeLimit = .2f;
+    // Abilities
+    public float afterImageCooldownTimeLimit = 1;
+    private bool afterImageOnColldown = false;
+    public AfterImage afterImage;
     
     public override void _Ready()
     {
         
     }
-    
+    public override void _UnhandledKeyInput(InputEventKey @event)
+    {
+        base._UnhandledKeyInput(@event);
+        // check if Ability is pressed
+        if (@event.IsActionPressed("ability"))
+        {
+            // check if ability is unlocked
+            if (GameState.Gems[(int)Gem.Color.Blue])
+            {
+                // check if ability is not on cooldown
+                if (!afterImageOnColldown)
+                {
+                    // use ability
+                    UseAfterImage();
+                    
+                }
+            }
+            
+        }
+    }
+    public void UseAfterImage()
+    {
+        // spawn after image
+        afterImage = (AfterImage)ResourceLoader.Load<PackedScene>("res://Scenes/PlayerAbilities/AfterImage.tscn").Instance();
+        afterImage.Position = Position;
+        // add this to CollisionException
+        afterImage.AddCollisionExceptionWith(this);
+        /// add after image to scene
+        GetParent().AddChild(afterImage);
+        // set after image on cooldown
+        afterImageOnColldown = true;
+        // start cooldown timer
+        Timer afterImageCooldownTimer = new Timer();
+        afterImageCooldownTimer.OneShot = true;
+        afterImageCooldownTimer.WaitTime = afterImageCooldownTimeLimit;
+        afterImageCooldownTimer.Connect("timeout", this, nameof(AfterImageCooldownTimerTimeout),new Godot.Collections.Array(afterImageCooldownTimer));
+        AddChild(afterImageCooldownTimer);
+        afterImageCooldownTimer.Start();
+    }
+    public void AfterImageCooldownTimerTimeout(Timer timer)
+    {
+        // set after image off cooldown
+        afterImageOnColldown = false;
+        // remove timer
+        timer.QueueFree();
+        // remove after image
+        afterImage.QueueFree();
+        // after image is null
+        afterImage = null;
+    }
     public override void _PhysicsProcess(float delta)
     {
         // Player Movement
