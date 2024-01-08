@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class LockedDoor : StaticBody2D
+public class Door : StaticBody2D
 {
     [Export] public Gem.Color DoorColor;
     private Sprite DoorSprite;
