@@ -15,11 +15,11 @@ public class Player : KinematicBody2D
     private bool bufferJump = false;
     private float bufferJumpTimer = 0;
     // movement parameters
-    public float speed = 300;
-    public float jumpStrength = 500;
-    public float gravity = 10;
+    public float speed = 500;
+    public float jumpStrength = 700;
+    public float gravity = 15;
     public float quickFallFactor = 1.5f;
-    public float slowFallFactor = 0.5f;
+    public float slowFallFactor = 0.95f;
     public float coyoteTimeLimit = .1f;
     public float bufferJumpTimeLimit = .2f;
     // Abilities

@@ -14,6 +14,22 @@ public class Gem : Node2D
 			GameState.AddGem(ColorType);
 			this.Visible = false;
 		};
+		// Load Texture based on color
+		switch (ColorType)
+		{
+			case Color.Blue:
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemBlue.png");
+				break;
+			case Color.Yellow:
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemYellow.png");
+				break;
+			case Color.Red:
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemRed.png");
+				break;
+			case Color.Purple:
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemPurple.png");
+				break;
+		}
 	}
 
 	public enum Color 

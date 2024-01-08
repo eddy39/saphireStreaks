@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/TileMaps/Bunker.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LevelSprites/LevelBG.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/GameObjects/Gem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/GameObjects/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LevelCamera.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=8]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 3 )
@@ -26,7 +28,8 @@ position = Vector2( 103, 610 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
 [node name="Gem" parent="." instance=ExtResource( 5 )]
-position = Vector2( 382, 274 )
+position = Vector2( 328, 305 )
+rotation = 0.467528
 
 [node name="Label" type="Label" parent="Gem"]
 margin_left = -54.0
@@ -48,3 +51,12 @@ margin_bottom = -100.0
 text = "This is a door
 you need to grab the gem first before 
 you are able to open this door"
+
+[node name="LevelCamera" parent="." instance=ExtResource( 7 )]
+limit_left = 0
+limit_top = 0
+limit_right = 1300
+limit_bottom = 800
+limit_smoothed = true
+
+[node name="UI" parent="." instance=ExtResource( 8 )]
