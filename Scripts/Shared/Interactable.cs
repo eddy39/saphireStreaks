@@ -1,16 +1,12 @@
 using Godot;
 using System;
 
-public class Interactables : Area2D
+public class Interactable : Area2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
     public event Action PlayerEntered;
     public event Action PlayerExited;
     public event Action Interacted;
+    public bool PlayerInArea { get; set; }
     public override void _Ready()
     {
         Connect("body_entered", this, nameof(OnPlayerEntered));
@@ -22,6 +18,7 @@ public class Interactables : Area2D
         if (!(body is Player))
             return;
 
+        PlayerInArea = true;
         PlayerEntered?.Invoke();
     }
 
@@ -30,14 +27,15 @@ public class Interactables : Area2D
         if (!(body is Player))
             return;
 
+        PlayerInArea = false;
         PlayerExited?.Invoke();
     }
 
-    public void Interact() => this.Interacted?.Invoke();
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed("interact") && PlayerInArea)
+        {
+            this.Interacted?.Invoke();
+        }
+    }
 }
