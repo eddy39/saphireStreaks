@@ -31,5 +31,20 @@ public class Door : StaticBody2D
                 Collider.Disabled = true;
             }
         };
+
+        GameState.DoorOpened += (op) => {
+            if(op) 
+            {
+                this.DoorSprite.Modulate = new Color
+                (
+                    this.DoorSprite.Modulate.r,
+                    this.DoorSprite.Modulate.g,
+                    this.DoorSprite.Modulate.b,
+                    0.2f
+                );
+
+                Collider.Disabled = true;
+            }
+       };
     }
 }
