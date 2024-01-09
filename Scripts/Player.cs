@@ -51,6 +51,18 @@ public class Player : KinematicBody2D
             }
             
         }
+
+        // Check if detonate key is pressed [X]
+        if (@event.IsActionPressed("detonate"))
+        {
+            if (!GameState.Gems[(int)Gem.Color.Red]) // if the player doesnt have red gem return
+                return;
+
+            if (afterImage is null) // if after image doesn't exist, return
+                return;
+            
+            afterImage.Detonate(); //detonate after image
+        }
     }
     public void UseAfterImage()
     {
@@ -64,23 +76,37 @@ public class Player : KinematicBody2D
         // set after image on cooldown
         afterImageOnColldown = true;
         // start cooldown timer
-        Timer afterImageCooldownTimer = new Timer();
-        afterImageCooldownTimer.OneShot = true;
-        afterImageCooldownTimer.WaitTime = afterImageCooldownTimeLimit;
+        Timer afterImageCooldownTimer = new Timer
+        {
+            OneShot = true,
+            WaitTime = afterImageCooldownTimeLimit
+        };
+
         afterImageCooldownTimer.Connect("timeout", this, nameof(AfterImageCooldownTimerTimeout),new Godot.Collections.Array(afterImageCooldownTimer));
         AddChild(afterImageCooldownTimer);
         afterImageCooldownTimer.Start();
+
+        // On After image deletion, call OnAfterImageExited
+        afterImage.Connect("tree_exited", this, nameof(OnAfterImageExited));
     }
+
+    // This function is invoked when after image exited
+    private void OnAfterImageExited()
+    {
+        // sets after image to null
+        afterImage = null;
+    }
+
     public void AfterImageCooldownTimerTimeout(Timer timer)
     {
         // set after image off cooldown
         afterImageOnColldown = false;
         // remove timer
         timer.QueueFree();
+        
         // remove after image
-        afterImage.QueueFree();
-        // after image is null
-        afterImage = null;
+        if (!(afterImage is null))
+            afterImage.QueueFree();
     }
     public override void _PhysicsProcess(float delta)
     {
