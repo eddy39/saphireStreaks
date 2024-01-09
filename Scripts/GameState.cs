@@ -13,6 +13,7 @@ public static class GameState
     // 3: purple
     public static bool[] Gems { get; private set; } = new bool[4] { false, false, false, false };
     public static event Action<Gem.Color> GemsUpdatedNotifier;
+    public static event Action<Boolean> DoorOpened;
     public static void AddGem(Gem.Color color)
     {
         Gems[(int)color] = true;
@@ -23,5 +24,10 @@ public static class GameState
     {
         Gems[(int)color] = false;
         GemsUpdatedNotifier?.Invoke(color);
+    }
+
+    public static void OpenDoor()
+    {
+        DoorOpened?.Invoke(true);
     }
 }
