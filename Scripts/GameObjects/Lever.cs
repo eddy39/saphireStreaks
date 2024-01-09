@@ -13,8 +13,9 @@ public class Lever : Node2D
     private Interactable Interactable;
     private void OnLeverStateChanged()
     {
-        _currentFrame = Mathf.Wrap(_currentFrame + 1, 0, LeverSprite.Hframes - 1);
+        _currentFrame = Mathf.Wrap(_currentFrame, 0, LeverSprite.Hframes);
         this.LeverSprite.Frame = _currentFrame;
+        _currentFrame++;
 
         this.LeverStateChangedEvent?.Invoke();
     }
