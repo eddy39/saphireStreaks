@@ -40,6 +40,21 @@ margin_bottom = -45.0
 text = "This is a gem
 Press F to Grab it"
 
+[node name="RedGem" parent="." instance=ExtResource( 5 )]
+position = Vector2( 221, 294 )
+rotation = 0.467528
+ColorType = 2
+
+[node name="Label" type="Label" parent="RedGem"]
+margin_left = -69.2487
+margin_top = -97.2246
+margin_right = 117.751
+margin_bottom = -32.2246
+text = "This is a red gem
+Press F to Grab it, 
+It explodes when you 
+press X"
+
 [node name="Door" parent="." instance=ExtResource( 6 )]
 position = Vector2( 615, 414 )
 scale = Vector2( 0.979, 1.886 )
@@ -66,10 +81,10 @@ limit_smoothed = true
 position = Vector2( 433, 512 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 854.0
-margin_top = 122.0
-margin_right = 916.0
-margin_bottom = 136.0
+margin_left = 990.0
+margin_top = 58.0
+margin_right = 1268.0
+margin_bottom = 140.0
 text = "Keybinds:
 [wasd]  - move
 [e] - sapwn afterimage

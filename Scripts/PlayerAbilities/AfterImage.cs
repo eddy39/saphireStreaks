@@ -32,4 +32,12 @@ public class AfterImage : Player
         // apply velocity
         MoveAndSlide(velocity, Vector2.Up);
     }
+
+    // Detonate ability
+    // Haven't added anything yet
+    public void Detonate()
+    {
+        GD.Print("boom!");
+        QueueFree();
+    }
 }

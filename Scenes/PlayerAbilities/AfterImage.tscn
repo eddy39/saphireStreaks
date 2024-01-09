@@ -1,8 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/PlayerAbilities/AfterImage.cs" type="Script" id=2]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 84.0536
+
 [node name="AfterImage" instance=ExtResource( 1 )]
 modulate = Color( 0.223529, 0.227451, 0.552941, 1 )
 script = ExtResource( 2 )
+
+[node name="Detector" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
+position = Vector2( 0, -31 )
+shape = SubResource( 1 )
