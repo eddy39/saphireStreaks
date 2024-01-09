@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/TileMaps/Bunker.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LevelSprites/LevelBG.png" type="Texture" id=2]
@@ -8,8 +8,8 @@
 [ext_resource path="res://Scenes/GameObjects/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/LevelCamera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/GameObjects/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/GameObjects/Lever.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/GameObjects/Laser.tscn" type="PackedScene" id=10]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 3 )
@@ -78,8 +78,6 @@ limit_smoothed = true
 
 [node name="UI" parent="." instance=ExtResource( 8 )]
 
-[node name="Laser" parent="." instance=ExtResource( 9 )]
-position = Vector2( 130, 95 )
 [node name="Lever" parent="." instance=ExtResource( 9 )]
 position = Vector2( 433, 512 )
 
@@ -93,3 +91,6 @@ text = "Keybinds:
 [e] - sapwn afterimage
 [x] - detonate afterimage
 [F] - interact with things in the environment"
+
+[node name="Laser" parent="." instance=ExtResource( 10 )]
+position = Vector2( 131, 92 )
