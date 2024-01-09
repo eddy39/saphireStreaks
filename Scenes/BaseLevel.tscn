@@ -64,3 +64,14 @@ limit_smoothed = true
 
 [node name="Lever" parent="." instance=ExtResource( 9 )]
 position = Vector2( 433, 512 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 854.0
+margin_top = 122.0
+margin_right = 916.0
+margin_bottom = 136.0
+text = "Keybinds:
+[wasd]  - move
+[e] - sapwn afterimage
+[x] - detonate afterimage
+[F] - interact with things in the environment"
