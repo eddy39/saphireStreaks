@@ -42,6 +42,7 @@ Press F to Grab it"
 [node name="Door" parent="." instance=ExtResource( 6 )]
 position = Vector2( 615, 414 )
 scale = Vector2( 0.979, 1.886 )
+DoorColor = null
 
 [node name="Label" type="Label" parent="Door"]
 margin_left = -101.0
