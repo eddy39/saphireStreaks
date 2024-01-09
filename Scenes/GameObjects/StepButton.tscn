@@ -4,13 +4,11 @@
 [ext_resource path="res://Scripts/GameObjects/StepButton.cs" type="Script" id=2]
 [ext_resource path="res://Assets/LevelSprites/ButtonTop.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 6.0
-height = 26.0
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 7, 17.5 )
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 5.0
-height = 38.0
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5, 22 )
 
 [node name="StepButton" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,9 +17,9 @@ script = ExtResource( 2 )
 position = Vector2( -2, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopButton"]
-position = Vector2( 2, 1 )
+position = Vector2( 1.49999, 4 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Top" type="Sprite" parent="TopButton"]
 texture = ExtResource( 3 )
@@ -30,8 +28,9 @@ texture = ExtResource( 3 )
 position = Vector2( 0, -5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottumButton"]
+position = Vector2( 1.42852e-05, -1.90735e-06 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="Bottum" type="Sprite" parent="BottumButton"]
 texture = ExtResource( 1 )

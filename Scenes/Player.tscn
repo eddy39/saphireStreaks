@@ -1,19 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/PlayerArt/Robot_Player_Character.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 30.0
-height = 4.0
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, -31 )
-shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 offset = Vector2( -1, -31 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -1, 0, -23, 0, -28, -27, -29, -50, -23, -57, 20, -57, 29, -50, 29, -25, 22, 0 )
