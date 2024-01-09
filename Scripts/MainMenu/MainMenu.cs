@@ -12,7 +12,7 @@ public class MainMenu : Control
 	public void StartGame()
 	{
 		// Load the game scene
-		GetTree().ChangeScene("res://Scenes/BaseLevel.tscn");
+		GetTree().ChangeScene("res://Scenes/Levels/1-1.tscn");
 	}
 
 }

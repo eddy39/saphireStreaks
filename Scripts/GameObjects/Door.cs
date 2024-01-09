@@ -17,7 +17,7 @@ public class Door : StaticBody2D
         // if matches sets the sprite's transparency to 0.5 (temporary)
         // and disable its collision
 
-        GameState.GemsUpdatedNotifier += (color) => {
+        /* GameState.GemsUpdatedNotifier += (color) => {
             if (DoorColor == color)
             {
                 this.DoorSprite.Modulate = new Color
@@ -30,6 +30,43 @@ public class Door : StaticBody2D
 
                 Collider.Disabled = true;
             }
-        };
+        }; */
+    }
+    public void OpenCloseDoor(bool open)
+    {
+        if (open)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
+        }
+    }
+    public void OpenDoor()
+    {
+        this.DoorSprite.Modulate = new Color
+        (
+            this.DoorSprite.Modulate.r,
+            this.DoorSprite.Modulate.g,
+            this.DoorSprite.Modulate.b,
+            0.5f
+        );
+
+        // turn off collision
+        Collider.SetDeferred("disabled", true);
+    }
+    public void CloseDoor()
+    {
+        this.DoorSprite.Modulate = new Color
+        (
+            this.DoorSprite.Modulate.r,
+            this.DoorSprite.Modulate.g,
+            this.DoorSprite.Modulate.b,
+            1f
+        );
+
+        Collider.SetDeferred("disabled", false);
     }
 }
+

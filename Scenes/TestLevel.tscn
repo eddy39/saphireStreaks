@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/GameObjects/Lever.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/GameObjects/Gem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/GameObjects/Laser.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/GameObjects/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/TestLevel.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/GameObjects/StepButton.tscn" type="PackedScene" id=7]
+
+[node name="TestLevel" instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( -524289, 1, 0, -458753, 1, 0, -393217, 1, 0, -327681, 1, 0, -262145, 1, 0, -196609, 1, 0, -131073, 1, 0, -196588, 1, 0, -196587, 1, 0, -196586, 1, 0, -196585, 1, 0, -196584, 1, 0, -196583, 1, 0, -65537, 1, 0, -131052, 1, 0, -131047, 1, 0, -131040, 1, 0, -1, 1, 0, -65516, 1, 0, -65510, 1, 0, -65504, 1, 0, 65535, 1, 0, 20, 1, 0, 26, 1, 0, 32, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65556, 1, 0, 65562, 1, 0, 65568, 1, 0, 196607, 1, 0, 131091, 1, 0, 131092, 1, 0, 131098, 1, 0, 131104, 1, 0, 262143, 1, 0, 196627, 1, 0, 196628, 1, 0, 196634, 1, 0, 196640, 1, 0, 196641, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262163, 1, 0, 262164, 1, 0, 262170, 1, 0, 262177, 1, 0, 393215, 1, 0, 327698, 1, 0, 327699, 1, 0, 327700, 1, 0, 327706, 1, 0, 327713, 1, 0, 458751, 1, 0, 393234, 1, 0, 393235, 1, 0, 393242, 1, 0, 393249, 1, 0, 524287, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 1, 0, 458778, 1, 0, 458785, 1, 0, 589823, 1, 0, 524303, 1, 0, 524304, 1, 0, 524305, 1, 0, 524306, 1, 0, 524307, 1, 0, 524320, 1, 0, 524321, 1, 0, 655359, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 589856, 1, 0, 720895, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0, 655380, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0, 655384, 1, 0, 655385, 1, 0, 655386, 1, 0, 655387, 1, 0, 655388, 1, 0, 655389, 1, 0, 655390, 1, 0, 655391, 1, 0, 655392, 1, 0 )
+
+[node name="Gem" parent="." index="6" instance=ExtResource( 3 )]
+position = Vector2( 365, 604 )
+rotation = 0.467528
+
+[node name="Label" type="Label" parent="Gem" index="2"]
+margin_left = -54.0
+margin_top = -76.0
+margin_right = 56.0
+margin_bottom = -45.0
+text = "This is a gem
+Press F to Grab it"
+
+[node name="RedGem" parent="." index="7" instance=ExtResource( 3 )]
+position = Vector2( 464, 604 )
+rotation = 0.467528
+ColorType = 2
+
+[node name="Label" type="Label" parent="RedGem" index="2"]
+margin_left = -69.2487
+margin_top = -97.2246
+margin_right = 117.751
+margin_bottom = -32.2246
+text = "This is a red gem
+Press F to Grab it, 
+It explodes when you 
+press X"
+
+[node name="Door" parent="." index="8" instance=ExtResource( 5 )]
+position = Vector2( 799, 475 )
+scale = Vector2( 0.979, 1.886 )
+
+[node name="Label" type="Label" parent="Door" index="2"]
+margin_left = -101.0
+margin_top = -148.0
+margin_right = 141.0
+margin_bottom = -100.0
+text = "This is a door
+you need to grab the gem first before 
+you are able to open this door"
+
+[node name="Lever" parent="." index="9" instance=ExtResource( 2 )]
+position = Vector2( 647, 576 )
+
+[node name="Label" type="Label" parent="." index="10"]
+margin_left = 990.0
+margin_top = 58.0
+margin_right = 1268.0
+margin_bottom = 140.0
+text = "Keybinds:
+[wasd]  - move
+[e] - sapwn afterimage
+[x] - detonate afterimage
+[F] - interact with things in the environment"
+
+[node name="Laser" parent="." index="11" instance=ExtResource( 4 )]
+position = Vector2( 30, 320 )
+rotation = 1.50519
+
+[node name="Laser2" parent="." index="12" instance=ExtResource( 4 )]
+position = Vector2( 1738, 375 )
+rotation = -0.953893
+
+[node name="StepButton" parent="." index="13" instance=ExtResource( 7 )]
+position = Vector2( 248, 641 )
