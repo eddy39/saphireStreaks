@@ -16,6 +16,7 @@ script = ExtResource( 1 )
 position = Vector2( 32, 32 )
 texture = ExtResource( 3 )
 hframes = 4
+frame = 1
 
 [node name="Interactable" parent="." instance=ExtResource( 2 )]
 
