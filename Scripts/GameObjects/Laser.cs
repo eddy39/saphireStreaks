@@ -8,13 +8,22 @@ public class Laser : Node2D
     public RayCast2D RayCast;
     public Line2D line;
     public Tween tween;
+    public Timer PeriodicTimer;
     //
     public Particles2D particlesBeam;
     public AudioStreamPlayer2D audioLaser;
 
     private bool IsCasting = false;
+    
 
-
+    public enum FiringMode
+    {
+        Continuous,
+        Periodic,
+        
+    }
+    [Export] public FiringMode firingMode = FiringMode.Continuous;
+    [Export] public float periodLength = 2f;
     public override void _Ready()
     {
         // get nodes
@@ -23,10 +32,13 @@ public class Laser : Node2D
         particlesBeam = (Particles2D) FindNode("particlesBeam");
         audioLaser = (AudioStreamPlayer2D) FindNode("audioLaser");
         RayCast = (RayCast2D) FindNode("RayCast2D");
+        PeriodicTimer = (Timer) FindNode("PeriodicTimer");
         // initial settings
         SetPhysicsProcess(false);
         line.Width = 0;
         RayCast.CastTo = new Vector2(100000,0);
+        //
+        ShutOnLaser();
     }
     public override void _PhysicsProcess(float delta)
     {
@@ -51,6 +63,60 @@ public class Laser : Node2D
         line.SetPointPosition(1,castPoint);
         
     }
+    public void SwitchLaserOnOff(bool off)
+    {
+        if (!off)
+        {
+            ShutOnLaser();
+        }
+        else
+        {
+            ShutOffLaser();
+        }
+    }
+    public void ShutOnLaser()
+    {
+        if (firingMode == FiringMode.Continuous)
+        {
+            CastLaser();
+        }
+        else if (firingMode == FiringMode.Periodic)
+        {
+            //create timers to start and top laser
+            
+            PeriodicTimer.Connect("timeout", this, nameof(SwitchLaser));
+            PeriodicTimer.Start();
+            
+        }
+    }
+    public void ShutOffLaser()
+    {
+        if (firingMode == FiringMode.Continuous)
+        {
+            StopLaser();
+        }
+        else if (firingMode == FiringMode.Periodic)
+        {
+            //create timers to start and top laser
+            
+            PeriodicTimer.Disconnect("timeout", this, nameof(SwitchLaser));
+            PeriodicTimer.Stop();
+
+            StopLaser();
+            
+        }
+    }
+    private void SwitchLaser()
+    {
+        if (IsCasting)
+        {
+            StopLaser();
+        }
+        else
+        {
+            CastLaser();
+        }
+    }
     public void CastLaser()
     {
         // 
@@ -67,6 +133,8 @@ public class Laser : Node2D
         tween.Start();
         // 
         audioLaser.Play();
+        // 
+        
     }
     public void StopLaser()
     {

@@ -44,6 +44,7 @@ texture = ExtResource( 1 )
 offset = Vector2( 32, 0 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 2, 0 )
 enabled = true
 cast_to = Vector2( 1000, 0 )
 
@@ -58,3 +59,5 @@ lifetime = 0.3
 local_coords = false
 process_material = SubResource( 1 )
 texture = ExtResource( 4 )
+
+[node name="PeriodicTimer" type="Timer" parent="."]
