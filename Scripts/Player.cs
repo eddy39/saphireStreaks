@@ -22,6 +22,7 @@ public class Player : KinematicBody2D
     public float slowFallFactor = 0.95f;
     public float coyoteTimeLimit = .1f;
     public float bufferJumpTimeLimit = .2f;
+    public Vector2 spawnPosition = new Vector2(0,0);
     // Abilities
     public float afterImageCooldownTimeLimit = 1;
     private bool afterImageOnColldown = false;
@@ -174,5 +175,9 @@ public class Player : KinematicBody2D
 
         // clamp velocity
         velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength/2);
+    }
+    public void Die()
+    {
+        Position = spawnPosition;
     }
 }

@@ -38,7 +38,12 @@ public class Laser : Node2D
             castPoint = ToLocal(RayCast.GetCollisionPoint());
             //Particles2DEnd.Position = castPoint;
             //Particles2DEnd.GlobalRotation = RayCast.GetCollisionNormal().Angle();
-            
+            // tell colliding object to die
+            if (RayCast.GetCollider() is Player)
+            {
+                Player damageable = (Player) RayCast.GetCollider();
+                damageable.Die();
+            }
         }
         //Particles2DEnd.Emitting = RayCast.IsColliding();
 

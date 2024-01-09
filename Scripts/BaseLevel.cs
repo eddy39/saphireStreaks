@@ -18,6 +18,7 @@ public class BaseLevel : Node2D
         levelCamera.Current = true;
         // set player position
         player.Position = spawnPoint.Position;
+        player.spawnPosition = spawnPoint.Position;
         levelCamera.Position = spawnPoint.Position;
         //
         GetNode<Laser>("Laser").CastLaser();
