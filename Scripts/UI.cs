@@ -37,7 +37,7 @@ public class UI : CanvasLayer
                 HBoxGems.AddChild(abilityIcon);
                 AbilityIcons[i] = abilityIcon;
                 
-                abilityIcon.Visible = false;
+                abilityIcon.Visible = GameState.Gems[i];
             }
         }
     }

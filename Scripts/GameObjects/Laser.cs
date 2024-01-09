@@ -38,7 +38,7 @@ public class Laser : Node2D
         line.Width = 0;
         RayCast.CastTo = new Vector2(100000,0);
         //
-        ShutOnLaser();
+        ShutOnLaser(true);
     }
     public override void _PhysicsProcess(float delta)
     {
@@ -67,14 +67,14 @@ public class Laser : Node2D
     {
         if (!off)
         {
-            ShutOnLaser();
+            ShutOnLaser(off);
         }
         else
         {
-            ShutOffLaser();
+            ShutOffLaser(off);
         }
     }
-    public void ShutOnLaser()
+    public void ShutOnLaser(bool _)
     {
         if (firingMode == FiringMode.Continuous)
         {
@@ -85,11 +85,12 @@ public class Laser : Node2D
             //create timers to start and top laser
             
             PeriodicTimer.Connect("timeout", this, nameof(SwitchLaser));
+            PeriodicTimer.WaitTime = periodLength;
             PeriodicTimer.Start();
             
         }
     }
-    public void ShutOffLaser()
+    public void ShutOffLaser(bool _)
     {
         if (firingMode == FiringMode.Continuous)
         {

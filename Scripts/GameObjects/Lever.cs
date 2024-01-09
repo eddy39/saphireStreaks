@@ -10,16 +10,17 @@ public class Lever : Node2D
     private int _currentFrame;
     private Sprite LeverSprite;
 
-    public event Action LeverStateChangedEvent;
+    public event Action<int> LeverStateChangedEvent;
     private Interactable Interactable;
     private ShaderMaterial ShaderMaterial = GD.Load<ShaderMaterial>("res://Scripts/Shared/OutlineShader.tres");
     private void OnLeverStateChanged()
     {
         _currentFrame = Mathf.Wrap(_currentFrame, 0, LeverSprite.Hframes);
         this.LeverSprite.Frame = _currentFrame;
+        this.LeverStateChangedEvent?.Invoke(_currentFrame);
         _currentFrame++;
 
-        this.LeverStateChangedEvent?.Invoke();
+        
     }
 
     public override void _Ready()
