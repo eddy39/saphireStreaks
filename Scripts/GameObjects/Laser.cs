@@ -9,6 +9,7 @@ public class Laser : Node2D
     public Line2D line;
     public Tween tween;
     public Timer PeriodicTimer;
+    public Timer DisableTimer;
     //
     public Particles2D particlesBeam;
     public AudioStreamPlayer2D audioLaser;
@@ -33,6 +34,7 @@ public class Laser : Node2D
         audioLaser = (AudioStreamPlayer2D) FindNode("audioLaser");
         RayCast = (RayCast2D) FindNode("RayCast2D");
         PeriodicTimer = (Timer) FindNode("PeriodicTimer");
+        DisableTimer = (Timer) FindNode("DisableTimer");
         // initial settings
         SetPhysicsProcess(false);
         line.Width = 0;
@@ -73,6 +75,15 @@ public class Laser : Node2D
         {
             ShutOffLaser(off);
         }
+    }
+    public void TemporarlyShutOffLaser(float time)
+    {
+        ShutOffLaser(true);
+        
+        DisableTimer.WaitTime = time;
+        DisableTimer.OneShot = true;
+        DisableTimer.Connect("timeout", this, nameof(ShutOnLaser),new Godot.Collections.Array(true));
+        DisableTimer.Start();
     }
     public void ShutOnLaser(bool _)
     {

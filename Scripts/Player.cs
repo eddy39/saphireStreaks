@@ -24,7 +24,7 @@ public class Player : KinematicBody2D
     public float bufferJumpTimeLimit = .2f;
     public Vector2 spawnPosition = new Vector2(0,0);
     // Abilities
-    public float afterImageCooldownTimeLimit = 4;
+    public float afterImageCooldownTimeLimit = 6;
     private bool afterImageOnColldown = false;
     public AfterImage afterImage;
     

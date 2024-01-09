@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/GameObjects/Lever.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Shared/Interactable.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/LevelSprites/Lever_Sprite-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://Assets/LevelSprites/2StateLever.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.0132
@@ -16,8 +16,7 @@ IsInteractable = true
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 32, 32 )
 texture = ExtResource( 3 )
-hframes = 4
-frame = 3
+hframes = 2
 
 [node name="Interactable" parent="." instance=ExtResource( 2 )]
 

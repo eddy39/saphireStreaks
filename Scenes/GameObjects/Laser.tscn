@@ -61,3 +61,5 @@ process_material = SubResource( 1 )
 texture = ExtResource( 4 )
 
 [node name="PeriodicTimer" type="Timer" parent="."]
+
+[node name="DisableTimer" type="Timer" parent="."]

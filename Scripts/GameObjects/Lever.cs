@@ -15,10 +15,11 @@ public class Lever : Node2D
     private ShaderMaterial ShaderMaterial = GD.Load<ShaderMaterial>("res://Scripts/Shared/OutlineShader.tres");
     private void OnLeverStateChanged()
     {
+        _currentFrame++;
         _currentFrame = Mathf.Wrap(_currentFrame, 0, LeverSprite.Hframes);
         this.LeverSprite.Frame = _currentFrame;
         this.LeverStateChangedEvent?.Invoke(_currentFrame);
-        _currentFrame++;
+        
 
         
     }

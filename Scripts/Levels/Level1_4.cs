@@ -36,22 +36,22 @@ public class Level1_4 : BaseLevel
     {
         if (leverState == 1)
         {
-            laser.SwitchLaserOnOff(true);
+            laser.TemporarlyShutOffLaser(8f);
         }
         else
         {
-            laser.SwitchLaserOnOff(false);
+            //laser.SwitchLaserOnOff(false);
         }
     }
     public void SwitchLaser2(int leverState)
     {
         if (leverState == 1)
         {
-            laser2.SwitchLaserOnOff(true);
+            laser2.TemporarlyShutOffLaser(8f);
         }
         else
         {
-            laser2.SwitchLaserOnOff(false);
+            //laser2.SwitchLaserOnOff(false);
         }
     }
 
