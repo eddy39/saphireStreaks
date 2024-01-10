@@ -60,6 +60,18 @@ public class Player : KinematicBody2D
                     
                 }
             }
+
+            // check if ability is unlocked
+            if (GameState.Gems[(int)Gem.Color.Purple])
+            {
+                // check if ability is not on cooldown
+                if (this.afterImage != null)
+                {
+                    // use ability
+                    SubstituteToAfterImage();
+                    
+                }
+            }
             
         }
 
@@ -161,6 +173,13 @@ public class Player : KinematicBody2D
 
         // On After image deletion, call OnAfterImageExited
         afterImage.Connect("tree_exited", this, nameof(OnAfterImageExited));
+    }
+
+    public void SubstituteToAfterImage()
+    {
+        var prevPosition = this.Position;
+        this.Position = afterImage.Position;
+        afterImage.Position = prevPosition;
     }
 
     // This function is invoked when after image exited

@@ -47,16 +47,16 @@ public class Gem : Node2D
 		switch (ColorType)
 		{
 			case Color.Blue:
-				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemBlue.png");
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/Blue_Gem.png");
 				break;
 			case Color.Yellow:
-				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemYellow.png");
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/Yellow_Gem.png");
 				break;
 			case Color.Red:
-				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemRed.png");
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/Red_Gem.png");
 				break;
 			case Color.Purple:
-				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/GemPurple.png");
+				this.GetNode<Sprite>("Sprite").Texture = GD.Load<Texture>("res://Assets/LevelSprites/Purple_Gem.png");
 				break;
 		}
 

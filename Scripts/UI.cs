@@ -15,7 +15,7 @@ public class UI : CanvasLayer
         HBoxGems = (HBoxContainer)FindNode("HBoxGems");
         dialogueBox = (DialogueBox)FindNode("DialogueBox");
         // Get AbilityIconScene
-        AbilityIconScene = (PackedScene)ResourceLoader.Load("res://Scenes/UIElements/AbilityIcon.tscn");
+        AbilityIconScene = (PackedScene)ResourceLoader.Load("res://Scenes/UIElements/AbilityIcon_Blue.tscn");
         // Connect to GameState
         GameState.GemsUpdatedNotifier += GetGems;
         
