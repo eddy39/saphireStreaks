@@ -8,6 +8,8 @@ public class Level1_2 : BaseLevel
     public StepButton button;
     public Laser laser;
     public Laser laser2;
+
+    public NPC npc;
     
     public override void _Ready()
     {
@@ -17,11 +19,15 @@ public class Level1_2 : BaseLevel
         button = GetNode<StepButton>("StepButton");
         laser = GetNode<Laser>("Laser");
         laser2 = GetNode<Laser>("Laser2");
+        npc = GetNode<NPC>("NPC");
+        // Setup npc
+        npc.dialogue = new TestDialogue();
+        ui.dialogueBox.dialogue = npc.dialogue;
         // Connect
         button.ButtonPressedEvent += door.OpenCloseDoor;
         button.ButtonPressedEvent += laser.SwitchLaserOnOff;
         button.ButtonPressedEvent += laser2.SwitchLaserOnOff;
-        
+        npc.OnDialogueInteractEvent += ui.dialogueBox.StartDialogue;
         //
         
         // FOR TESTING PURPOSES SET THE REQUIRED GEMS TRUE

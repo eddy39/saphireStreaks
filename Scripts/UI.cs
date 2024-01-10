@@ -5,6 +5,7 @@ public class UI : CanvasLayer
 {
     // Nodes 
     public HBoxContainer HBoxGems;
+    public DialogueBox dialogueBox;
     // vars
     public PackedScene AbilityIconScene;
     private AbilityIcon[] AbilityIcons = new AbilityIcon[4] { null, null, null, null };
@@ -12,6 +13,7 @@ public class UI : CanvasLayer
     {
         // Get HBoxGems
         HBoxGems = (HBoxContainer)FindNode("HBoxGems");
+        dialogueBox = (DialogueBox)FindNode("DialogueBox");
         // Get AbilityIconScene
         AbilityIconScene = (PackedScene)ResourceLoader.Load("res://Scenes/UIElements/AbilityIcon.tscn");
         // Connect to GameState
@@ -44,6 +46,6 @@ public class UI : CanvasLayer
 
     public void GetGems(Gem.Color color)
     {
-        //AbilityIcons[(int)color].Visible = GameState.GemCount[color] != 0;
+        AbilityIcons[(int)color].Visible = GameState.GemCount[color] != 0;
     }
 }

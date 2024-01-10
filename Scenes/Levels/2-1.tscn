@@ -28,9 +28,9 @@ position = Vector2( 1153, 129 )
 position = Vector2( 1413, 574 )
 NextLevel = "res://Scenes/Levels/2-2.tscn"
 
-[node name="Gem" parent="." index="9" instance=ExtResource( 8 )]
-position = Vector2( 85, 417 )
-ColorType = 1
-
-[node name="ThrowBox" parent="." index="10" instance=ExtResource( 2 )]
+[node name="ThrowBox" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 990, 422 )
+
+[node name="Gem" parent="." index="10" instance=ExtResource( 8 )]
+position = Vector2( 150, 413 )
+ColorType = 2
