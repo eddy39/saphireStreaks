@@ -37,14 +37,13 @@ public class AfterImage : Player
     // Haven't added anything yet
     public void Detonate()
     {
-        GD.Print(this.Detector.GetOverlappingBodies().Count);
         foreach (var colObject in this.Detector.GetOverlappingBodies())
-        {GD.Print(colObject);
+        {
             if (colObject is Laser laser)
-            {GD.PrintErr("ag");
+            {
                 if (!laser.CanBeDisabled)
                     return;
-GD.Print("ewqe");
+
                 laser.OverloadLaser();
             }
         }
