@@ -1,9 +1,11 @@
 using Godot;
 using System;
 
-public class AfterImage : Player
+public class AfterImage : ThrowBox
 {
     private Area2D Detector;
+    /* public Vector2 velocity = new Vector2();
+    public float gravity = 15; */
     public override void _Ready()
     {
         this.Detector = base.GetNode<Area2D>("Detector");
@@ -26,11 +28,11 @@ public class AfterImage : Player
     public override void _PhysicsProcess(float delta)
     {
         // No base physics
-        //base._PhysicsProcess(delta);
-        // just falling
+        base._PhysicsProcess(delta);
+        /* // just falling
         velocity.y += gravity;
         // apply velocity
-        MoveAndSlide(velocity, Vector2.Up);
+        MoveAndSlide(velocity, Vector2.Up); */
     }
 
     // Detonate ability

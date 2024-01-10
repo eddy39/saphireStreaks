@@ -27,7 +27,7 @@ public class StepButton : Node2D
     }
     public void OnTopButtonBodyEntered(Node body)
     {
-        if (body is Player)
+        if (body is KinematicBody2D)
         {
             objectsOnButton.Add(body);
             // if not already activated move down
@@ -42,7 +42,7 @@ public class StepButton : Node2D
     }
     public void OnTopButtonBodyExited(Node body)
     {
-        if (body is Player)
+        if (body is KinematicBody2D)
         {
             objectsOnButton.Remove(body);
             if (objectsOnButton.Count == 0)

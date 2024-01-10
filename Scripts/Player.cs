@@ -27,10 +27,21 @@ public class Player : KinematicBody2D
     public float afterImageCooldownTimeLimit = 6;
     private bool afterImageOnColldown = false;
     public AfterImage afterImage;
+    public Area2D VacuumArea;
+    public Node2D VaccumPoint;
+    public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
+    public float succtionForce = 30;
+    public float vacuumThrowForce = 1500;
+    public bool vaccumActive = false;
     
     public override void _Ready()
     {
-        
+        // Get Nodes
+        VacuumArea = GetNode<Area2D>("VacuumArea");
+        VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
+        // Connect Signals
+        VacuumArea.Connect("body_entered", this, nameof(OnVacuumAreaBodyEntered));
+        VacuumArea.Connect("body_exited", this, nameof(OnVacuumAreaBodyExited));
     }
     public override void _UnhandledKeyInput(InputEventKey @event)
     {
@@ -63,6 +74,67 @@ public class Player : KinematicBody2D
             
             GameState.RemoveGem(Gem.Color.Red);
             afterImage.Detonate(); //detonate after image
+        }
+        // vacuum ability
+        if (@event.IsActionPressed("vacuum"))
+        {
+            // check if ability is unlocked
+            if (GameState.Gems[(int)Gem.Color.Yellow])
+            {
+               
+                // use ability
+                vaccumActive = true;
+                
+            }
+            
+        }
+        if (@event.IsActionReleased("vacuum"))
+        {
+            // check if ability is unlocked
+            if (GameState.Gems[(int)Gem.Color.Yellow])
+            {
+               
+                // throw stuff away
+                VaccuumThrow();
+                vaccumActive = false;
+            }
+            
+        }
+    }
+    public void UseVacuum()
+    {
+        foreach (ThrowBox kinBody in VacuumedBodies)
+        {
+            // direction from kinbody to VaccumPoint
+            Vector2 direction = VaccumPoint.GlobalPosition - kinBody.GlobalPosition;
+            kinBody.velocity += direction.Normalized()*succtionForce;
+            // clamp velocity
+            velocity = new Vector2(Mathf.Clamp(velocity.x, -200, 200), Mathf.Clamp(velocity.y, -200, 200));
+        }
+            
+    }
+    public void VaccuumThrow()
+    {
+        foreach (ThrowBox kinBody in VacuumedBodies)
+        {
+            // direction from player to mouse
+            Vector2 direction = GetGlobalMousePosition() - GlobalPosition;
+            kinBody.velocity += direction.Normalized()*vacuumThrowForce;
+            //kinBody.MoveAndSlide(direction.Normalized()*succtionForce, Vector2.Up);
+        }
+    }
+    public void OnVacuumAreaBodyEntered(Node body)
+    {
+        if (body is ThrowBox kinBody)
+        {
+            VacuumedBodies.Add(kinBody);
+        }
+    }
+    public void OnVacuumAreaBodyExited(Node body)
+    {
+        if (body is ThrowBox kinBody)
+        {
+            VacuumedBodies.Remove(kinBody);
         }
     }
     public void UseAfterImage()
@@ -202,6 +274,14 @@ public class Player : KinematicBody2D
 
         // clamp velocity
         velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength/2);
+        // ##### Vacuum Ability Rotation
+        // rotate vaccum area toward mouse position
+        VacuumArea.Rotation = GetGlobalMousePosition().AngleToPoint(GlobalPosition);
+        //
+        if (vaccumActive)
+        {
+            UseVacuum();
+        }
     }
     public void Die()
     {

@@ -36,11 +36,15 @@ public static class GameState
 
         if (color == Gem.Color.Red)
         {
+            // check if RedGEmsQueue is empty
+            if (RedGemQueue.Count == 0)
+            {
+                return;
+            }
             RedGemQueue.Dequeue();
         }
 
         GemsUpdatedNotifier?.Invoke(color);
     }
 
-    
 }
