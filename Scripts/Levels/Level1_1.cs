@@ -14,6 +14,10 @@ public class Level1_1 : BaseLevel
         button = GetNode<StepButton>("StepButton");
         // Connect
         button.ButtonPressedEvent += door.OpenCloseDoor;
+
+        var laser = GetNode<Laser>("Laser");
+        laser.ShutOnLaser(true);
+        
     }
 
 }

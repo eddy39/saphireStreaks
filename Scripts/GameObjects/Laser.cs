@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Laser : Node2D
+public class Laser : StaticBody2D
 {
     // nodes
     public Sprite Emitter;
@@ -25,6 +25,7 @@ public class Laser : Node2D
     }
     [Export] public FiringMode firingMode = FiringMode.Continuous;
     [Export] public float periodLength = 2f;
+    [Export] public bool CanBeDisabled { get; set; }
     public override void _Ready()
     {
         // get nodes
@@ -100,7 +101,11 @@ public class Laser : Node2D
             PeriodicTimer.Start();
             
         }
+
+        if (DisableTimer.IsConnected("timeout", this, nameof(ShutOnLaser)))    
+            DisableTimer.Disconnect("timeout", this, nameof(ShutOnLaser));
     }
+
     public void ShutOffLaser(bool _)
     {
         if (firingMode == FiringMode.Continuous)
@@ -162,5 +167,11 @@ public class Laser : Node2D
         tween.Start();
         // 
         audioLaser.Stop();
+    }
+
+    // Detonate Ability
+    public void OverloadLaser()
+    {
+        TemporarlyShutOffLaser(4);
     }
 }

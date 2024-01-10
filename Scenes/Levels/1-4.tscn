@@ -35,9 +35,13 @@ position = Vector2( 0, 421 )
 position = Vector2( 990, 257 )
 rotation = -1.5708
 
-[node name="Lever" parent="." index="11" instance=ExtResource( 7 )]
+[node name="Laser3" parent="." index="11" instance=ExtResource( 2 )]
+position = Vector2( 990, 257 )
+rotation = -1.5708
+
+[node name="Lever" parent="." index="12" instance=ExtResource( 7 )]
 position = Vector2( 288, 577 )
 
-[node name="Lever2" parent="." index="12" instance=ExtResource( 7 )]
+[node name="Lever2" parent="." index="13" instance=ExtResource( 7 )]
 position = Vector2( 1217, 420 )
 rotation = -1.5708
