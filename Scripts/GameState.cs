@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Godot;
 
 public static class GameState
 {
@@ -20,12 +22,14 @@ public static class GameState
     public static Queue<Gem> RedGemQueue = new Queue<Gem>();
 
     public static event Action<Gem.Color> GemsUpdatedNotifier;
+    public static event Action LevelsChanged;
+    public static void InvokeLevelsChanged() => LevelsChanged?.Invoke();
 
     public static void AddGem(Gem.Color color)
     {
         Gems[(int)color] = true;
         GemCount[color]++;
-
+GD.Print("1");
         GemsUpdatedNotifier?.Invoke(color);
     }
 

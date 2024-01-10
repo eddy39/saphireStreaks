@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public class Laser : StaticBody2D
 {
@@ -115,8 +116,9 @@ public class Laser : StaticBody2D
         else if (firingMode == FiringMode.Periodic)
         {
             //create timers to start and top laser
-            
-            PeriodicTimer.Disconnect("timeout", this, nameof(SwitchLaser));
+            if (PeriodicTimer.IsConnected("timeout", this, nameof(SwitchLaser)))
+                PeriodicTimer.Disconnect("timeout", this, nameof(SwitchLaser));
+                
             PeriodicTimer.Stop();
 
             StopLaser();

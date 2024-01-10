@@ -15,7 +15,7 @@ public class Player : KinematicBody2D
     private bool bufferJump = false;
     private float bufferJumpTimer = 0;
     // movement parameters
-    public float speed = 190;
+    public float speed = 290;
     public float jumpStrength = 650;
     public float gravity = 20;
     public float quickFallFactor = 1.5f;
