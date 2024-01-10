@@ -48,6 +48,12 @@ public class AfterImage : ThrowBox
 
                 laser.OverloadLaser();
             }
+            if (colObject is DestructableBox box)
+            {
+                
+
+                box.Boom();
+            }
         }
 
         QueueFree();
