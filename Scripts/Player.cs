@@ -15,16 +15,16 @@ public class Player : KinematicBody2D
     private bool bufferJump = false;
     private float bufferJumpTimer = 0;
     // movement parameters
-    public float speed = 500;
-    public float jumpStrength = 700;
-    public float gravity = 15;
+    public float speed = 190;
+    public float jumpStrength = 650;
+    public float gravity = 20;
     public float quickFallFactor = 1.5f;
-    public float slowFallFactor = 0.95f;
+    public float slowFallFactor = 0.90f;
     public float coyoteTimeLimit = .1f;
     public float bufferJumpTimeLimit = .2f;
     public Vector2 spawnPosition = new Vector2(0,0);
     // Abilities
-    public float afterImageCooldownTimeLimit = 6;
+    public float afterImageCooldownTimeLimit = 7;
     private bool afterImageOnColldown = false;
     public AfterImage afterImage;
     public Area2D VacuumArea;
@@ -179,7 +179,11 @@ public class Player : KinematicBody2D
         
         // remove after image
         if (!(afterImage is null))
+        {
             afterImage.QueueFree();
+            afterImage = null;
+        }
+    
     }
     public override void _PhysicsProcess(float delta)
     {
@@ -281,6 +285,15 @@ public class Player : KinematicBody2D
         if (vaccumActive)
         {
             UseVacuum();
+        }
+        // check distance to afterimage
+        if (!(afterImage is null))
+        {
+            if (GlobalPosition.DistanceTo(afterImage.GlobalPosition) > 60)
+            {
+                // remove collision exception
+                afterImage.RemoveCollisionExceptionWith(this);
+            }
         }
     }
     public void Die()
