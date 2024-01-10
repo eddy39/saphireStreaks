@@ -61,6 +61,7 @@ public class Player : KinematicBody2D
             if (afterImage is null) // if after image doesn't exist, return
                 return;
             
+            GameState.RemoveGem(Gem.Color.Red);
             afterImage.Detonate(); //detonate after image
         }
     }
