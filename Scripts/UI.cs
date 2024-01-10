@@ -44,6 +44,6 @@ public class UI : CanvasLayer
 
     public void GetGems(Gem.Color color)
     {
-        AbilityIcons[(int)color].Visible = true;
+        AbilityIcons[(int)color].Visible = GameState.GemCount[color] != 0;
     }
 }

@@ -7,8 +7,14 @@ public class AbilityIcon : TextureRect
     public Gem.Color AbilityColor;
     // Nodes
     public TextureRect GemTexture;
+	private Label Label;
     public override void _Ready()
     {
+		this.Label = GetNode<Label>("Label");
+		GameState.GemsUpdatedNotifier += (_) => {
+			this.Label.Text = GameState.GemCount[AbilityColor].ToString();
+		};
+
         // Get Gem
         GemTexture = GetNode<TextureRect>("Gem");
         // Load Texture based on color

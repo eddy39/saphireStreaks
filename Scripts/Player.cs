@@ -42,7 +42,7 @@ public class Player : KinematicBody2D
             if (GameState.Gems[(int)Gem.Color.Blue])
             {
                 // check if ability is not on cooldown
-                if (!afterImageOnColldown)
+                if (!afterImageOnColldown || this.afterImage == null)
                 {
                     // use ability
                     UseAfterImage();
@@ -61,6 +61,7 @@ public class Player : KinematicBody2D
             if (afterImage is null) // if after image doesn't exist, return
                 return;
             
+            GameState.RemoveGem(Gem.Color.Red);
             afterImage.Detonate(); //detonate after image
         }
     }

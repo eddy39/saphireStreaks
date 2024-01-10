@@ -3,10 +3,10 @@ using System;
 
 public class AfterImage : Player
 {
-    
+    private Area2D Detector;
     public override void _Ready()
     {
-        
+        this.Detector = base.GetNode<Area2D>("Detector");
     }
     public override void _UnhandledKeyInput(InputEventKey @event)
     {
@@ -37,7 +37,18 @@ public class AfterImage : Player
     // Haven't added anything yet
     public void Detonate()
     {
-        GD.Print("boom!");
+        GD.Print(this.Detector.GetOverlappingBodies().Count);
+        foreach (var colObject in this.Detector.GetOverlappingBodies())
+        {GD.Print(colObject);
+            if (colObject is Laser laser)
+            {GD.PrintErr("ag");
+                if (!laser.CanBeDisabled)
+                    return;
+GD.Print("ewqe");
+                laser.OverloadLaser();
+            }
+        }
+
         QueueFree();
     }
 }
