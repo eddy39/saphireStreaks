@@ -1,10 +1,13 @@
 using Godot;
 using System;
+using System.Data.Odbc;
 
 public class Gem : Node2D
 {
 	[Export] public Color ColorType { get; set; }
 	[Export] public bool IsInteractable { get; set; } = true;
+	[Export] public bool Regeneratable { get; set; }
+	private Timer RegenerationTimer;
 	private Interactable Interactable;
 	private Sprite GemSprite;
     private ShaderMaterial ShaderMaterial = GD.Load<ShaderMaterial>("res://Scripts/Shared/OutlineShader.tres");
@@ -16,9 +19,30 @@ public class Gem : Node2D
 		// Give the player gem when the player interacts with it
 		this.Interactable.Interacted += () =>
 		{
+			if (!this.Visible)
+				return;
+
 			GameState.AddGem(ColorType);
-			this.Visible = false;
+
+			if (Regeneratable)
+			{
+				this.Visible = false;
+
+				if (this.ColorType == Color.Red)
+					GameState.RedGemQueue.Enqueue(this);
+			}
+			else
+			{
+				this.QueueFree();
+			}
 		};
+
+		if (Regeneratable)
+		{
+			this.RegenerationTimer = base.GetNode<Timer>("RegenerationTimer");
+			this.RegenerationTimer.Connect("timeout", this, nameof(RegenerateGem));
+		}
+
 		// Load Texture based on color
 		switch (ColorType)
 		{
@@ -38,6 +62,16 @@ public class Gem : Node2D
 
 		this.Interactable.PlayerEntered += OnPlayerEntered;
 		this.Interactable.PlayerExited += OnPlayerExited;
+	}
+
+	private void RegenerateGem()
+	{
+		if (GameState.RedGemQueue.Contains(this))
+		{
+			return;
+		}
+
+		this.Visible = true;
 	}
 
 	private void OnPlayerEntered()

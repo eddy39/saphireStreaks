@@ -35,6 +35,10 @@ NextLevel = "res://Scenes/Levels/1-2.tscn"
 [node name="Redgem" parent="." index="10" instance=ExtResource( 2 )]
 position = Vector2( 456, 562 )
 ColorType = 2
+Regeneratable = true
+
+[node name="RegenerationTimer" type="Timer" parent="Redgem" index="2"]
+autostart = true
 
 [node name="Laser" parent="." index="11" instance=ExtResource( 7 )]
 position = Vector2( 735, 641 )
