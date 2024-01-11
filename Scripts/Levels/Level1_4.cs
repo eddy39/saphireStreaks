@@ -36,7 +36,7 @@ public class Level1_4 : BaseLevel
     {
         if (leverState == 1)
         {
-            laser.TemporarlyShutOffLaser(8f);
+            laser.TemporarlyShutOffLaser(10f);
         }
         else
         {
@@ -47,7 +47,7 @@ public class Level1_4 : BaseLevel
     {
         if (leverState == 1)
         {
-            laser2.TemporarlyShutOffLaser(8f);
+            laser2.TemporarlyShutOffLaser(10f);
         }
         else
         {
