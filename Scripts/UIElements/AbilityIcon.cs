@@ -3,17 +3,17 @@ using System;
 
 public class AbilityIcon : TextureRect
 {
-    [Export]
+    /* [Export] */
     public Gem.Color AbilityColor;
     // Nodes
     public TextureRect GemTexture;
 	private Label Label;
     public override void _Ready()
     {
-		this.Label = GetNode<Label>("Label");
+		/* this.Label = GetNode<Label>("Label");
 		GameState.GemsUpdatedNotifier += (_) => {
 			this.Label.Text = GameState.GemCount[AbilityColor].ToString();
-		};
+		}; */
 
         // Get Gem
         GemTexture = GetNode<TextureRect>("Gem");
@@ -21,20 +21,20 @@ public class AbilityIcon : TextureRect
 		switch (AbilityColor)
 		{
 			case Gem.Color.Blue:
-				GemTexture.Texture = GD.Load<Texture>("res://Assets/UI/GemBlue.png");
+				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Blue_Gem.png");
 				break;
 			case Gem.Color.Yellow:
-				GemTexture.Texture = GD.Load<Texture>("res://Assets/UI/GemYellow.png");
+				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Yellow_Gem.png");
 				break;
 			case Gem.Color.Red:
-				GemTexture.Texture = GD.Load<Texture>("res://Assets/UI/GemRed.png");
+				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Red_Gem.png");
 				break;
 			case Gem.Color.Purple:
-				GemTexture.Texture = GD.Load<Texture>("res://Assets/UI/GemPurple.png");
+				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Purple_Gem.png");
 				break;
 		}
     }
-
+	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {

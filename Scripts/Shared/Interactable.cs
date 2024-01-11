@@ -12,7 +12,7 @@ public class Interactable : Area2D
         Connect("body_entered", this, nameof(OnPlayerEntered));
         Connect("body_exited", this, nameof(OnPlayerExited));
     }
-
+    
     private void OnPlayerEntered(Node2D body)
     {
         if (!(body is Player))

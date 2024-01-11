@@ -17,7 +17,7 @@ public static class GameState
         { Gem.Color.Blue, 0 }, { Gem.Color.Yellow, 0}, { Gem.Color.Red, 0 }, { Gem.Color.Purple, 0 }
     };
 
-    public static Queue<Gem> RedGemQueue = new Queue<Gem>();
+    //public static Queue<Gem> RedGemQueue = new Queue<Gem>();
 
     public static event Action<Gem.Color> GemsUpdatedNotifier;
 
@@ -31,7 +31,7 @@ public static class GameState
 
     public static void RemoveGem(Gem.Color color)
     {
-        Gems[(int)color] = false;
+       /*  Gems[(int)color] = false;
         GemCount[color]--;
 
         if (color == Gem.Color.Red)
@@ -44,7 +44,7 @@ public static class GameState
             RedGemQueue.Dequeue();
         }
 
-        GemsUpdatedNotifier?.Invoke(color);
+        GemsUpdatedNotifier?.Invoke(color); */
     }
 
 }
