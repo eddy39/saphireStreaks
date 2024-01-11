@@ -38,6 +38,7 @@ firingMode = 1
 position = Vector2( 1280, 225 )
 rotation = 3.14159
 firingMode = 1
+periodLength = 2.5
 
 [node name="NPC" parent="." index="11" instance=ExtResource( 7 )]
 position = Vector2( 1125, 414 )

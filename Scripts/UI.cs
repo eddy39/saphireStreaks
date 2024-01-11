@@ -23,6 +23,12 @@ public class UI : CanvasLayer
         // Preloads the gem icons
         InitializeGems();
     }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        // Connect to GameState
+        GameState.GemsUpdatedNotifier -= GetGems;
+    }
 
     private void InitializeGems()
     {
@@ -70,7 +76,6 @@ public class UI : CanvasLayer
 
     public void GetGems(Gem.Color color)
     {
-        GD.Print("2");
-        AbilityIcons[(int)color].Visible = GameState.GemCount[color] != 0;
+        AbilityIcons[(int)color].Visible = true;
     }
 }

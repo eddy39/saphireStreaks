@@ -17,6 +17,7 @@ texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = 68.0
 margin_top = 84.0
 margin_right = 120.0

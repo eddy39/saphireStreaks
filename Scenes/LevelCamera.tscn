@@ -3,4 +3,9 @@
 [ext_resource path="res://Scripts/LevelCamera.cs" type="Script" id=1]
 
 [node name="LevelCamera" type="Camera2D"]
+zoom = Vector2( 0.9, 0.9 )
+smoothing_enabled = true
+smoothing_speed = 2.0
 script = ExtResource( 1 )
+speedx = 1.0
+speedy = 1.0

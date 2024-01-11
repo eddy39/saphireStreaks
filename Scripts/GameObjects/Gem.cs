@@ -28,8 +28,8 @@ public class Gem : Node2D
 			{
 				this.Visible = false;
 
-				if (this.ColorType == Color.Red)
-					GameState.RedGemQueue.Enqueue(this);
+				/* if (this.ColorType == Color.Red)
+					GameState.RedGemQueue.Enqueue(this); */
 			}
 			else
 			{
@@ -66,10 +66,10 @@ public class Gem : Node2D
 
 	private void RegenerateGem()
 	{
-		if (GameState.RedGemQueue.Contains(this))
+		/* if (GameState.RedGemQueue.Contains(this))
 		{
 			return;
-		}
+		} */
 
 		this.Visible = true;
 	}
