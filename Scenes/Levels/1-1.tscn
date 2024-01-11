@@ -34,7 +34,7 @@ position = Vector2( 1413, 574 )
 NextLevel = "res://Scenes/Levels/1-2.tscn"
 
 [node name="Door" parent="." index="9" instance=ExtResource( 3 )]
-position = Vector2( 751, 576 )
+position = Vector2( 755, 576 )
 
 [node name="BluePortal" parent="." index="10" instance=ExtResource( 9 )]
 position = Vector2( 230, 577 )

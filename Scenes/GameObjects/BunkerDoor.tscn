@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/GameObjects/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/LevelSprites/buker_door.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30.5, 63.75 )
 
 [node name="BunkerDoor" instance=ExtResource( 1 )]
 
@@ -9,4 +12,5 @@
 texture = ExtResource( 2 )
 
 [node name="Collider" parent="." index="1"]
-position = Vector2( 0.5, 1.5 )
+position = Vector2( -0.5, 1.5 )
+shape = SubResource( 1 )
