@@ -7,7 +7,7 @@ public class LevelCamera : Camera2D
     // movemetn vars
     private Vector2 velocity = new Vector2();
     private Vector2 target = new Vector2();
-    [Export] private Vector2 offset = new Vector2(0, -15);
+    [Export] private Vector2 offset = new Vector2(0, 0);
     [Export] private float speedx = 10;
     [Export] private float speedy = 10;
     public override void _Ready()
