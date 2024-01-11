@@ -20,7 +20,7 @@ curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
-emission_box_extents = Vector3( 1, 1, 1 )
+emission_box_extents = Vector3( 1, 10, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 300.0
@@ -55,8 +55,6 @@ cast_to = Vector2( 1000, 0 )
 [node name="audioLaser" type="AudioStreamPlayer2D" parent="."]
 
 [node name="particlesBeam" type="Particles2D" parent="."]
-visible = false
-emitting = false
 lifetime = 0.3
 local_coords = false
 process_material = SubResource( 1 )
