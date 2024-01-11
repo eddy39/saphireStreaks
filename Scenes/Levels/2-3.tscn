@@ -27,7 +27,7 @@ position = Vector2( 1054, 447 )
 
 [node name="ToNextLvl" parent="." index="8" instance=ExtResource( 5 )]
 position = Vector2( 1413, 574 )
-NextLevel = "res://Scenes/Levels/2-3.tscn"
+NextLevel = "res://Scenes/Levels/2-4.tscn"
 
 [node name="ThrowBox" parent="." index="9" instance=ExtResource( 2 )]
 position = Vector2( 34, 393 )
