@@ -22,23 +22,27 @@ public class Player : KinematicBody2D
     public float slowFallFactor = 0.90f;
     public float coyoteTimeLimit = .1f;
     public float bufferJumpTimeLimit = .2f;
-    public Vector2 spawnPosition = new Vector2(0,0);
+    public Vector2 spawnPosition = new Vector2(0, 0);
     // Abilities
     public float afterImageCooldownTimeLimit = 7;
     private bool afterImageOnColldown = false;
     public AfterImage afterImage;
     public Area2D VacuumArea;
     public Node2D VaccumPoint;
+    private Sprite PlayerSprite;
     public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
     public float succtionForce = 30;
     public float vacuumThrowForce = 1500;
     public bool vaccumActive = false;
-    
+
     public override void _Ready()
     {
         // Get Nodes
         VacuumArea = GetNode<Area2D>("VacuumArea");
         VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
+
+        this.PlayerSprite = GetNode<Sprite>("Sprite");
+
         // Connect Signals
         VacuumArea.Connect("body_entered", this, nameof(OnVacuumAreaBodyEntered));
         VacuumArea.Connect("body_exited", this, nameof(OnVacuumAreaBodyExited));
@@ -57,7 +61,7 @@ public class Player : KinematicBody2D
                 {
                     // use ability
                     UseAfterImage();
-                    
+
                 }
             }
 
@@ -69,10 +73,10 @@ public class Player : KinematicBody2D
                 {
                     // use ability
                     SubstituteToAfterImage();
-                    
+
                 }
             }
-            
+
         }
 
         // Check if detonate key is pressed [X]
@@ -83,7 +87,7 @@ public class Player : KinematicBody2D
 
             if (afterImage is null) // if after image doesn't exist, return
                 return;
-            
+
             //GameState.RemoveGem(Gem.Color.Red);
             afterImage.Detonate(); //detonate after image
         }
@@ -93,24 +97,24 @@ public class Player : KinematicBody2D
             // check if ability is unlocked
             if (GameState.Gems[(int)Gem.Color.Yellow])
             {
-               
+
                 // use ability
                 vaccumActive = true;
-                
+
             }
-            
+
         }
         if (@event.IsActionReleased("vacuum"))
         {
             // check if ability is unlocked
             if (GameState.Gems[(int)Gem.Color.Yellow])
             {
-               
+
                 // throw stuff away
                 VaccuumThrow();
                 vaccumActive = false;
             }
-            
+
         }
     }
     public void UseVacuum()
@@ -119,11 +123,11 @@ public class Player : KinematicBody2D
         {
             // direction from kinbody to VaccumPoint
             Vector2 direction = VaccumPoint.GlobalPosition - kinBody.GlobalPosition;
-            kinBody.velocity += direction.Normalized()*succtionForce;
+            kinBody.velocity += direction.Normalized() * succtionForce;
             // clamp velocity
             velocity = new Vector2(Mathf.Clamp(velocity.x, -200, 200), Mathf.Clamp(velocity.y, -200, 200));
         }
-            
+
     }
     public void VaccuumThrow()
     {
@@ -131,7 +135,7 @@ public class Player : KinematicBody2D
         {
             // direction from player to mouse
             Vector2 direction = GetGlobalMousePosition() - GlobalPosition;
-            kinBody.velocity += direction.Normalized()*vacuumThrowForce;
+            kinBody.velocity += direction.Normalized() * vacuumThrowForce;
             //kinBody.MoveAndSlide(direction.Normalized()*succtionForce, Vector2.Up);
         }
     }
@@ -167,7 +171,7 @@ public class Player : KinematicBody2D
             WaitTime = afterImageCooldownTimeLimit
         };
 
-        afterImageCooldownTimer.Connect("timeout", this, nameof(AfterImageCooldownTimerTimeout),new Godot.Collections.Array(afterImageCooldownTimer));
+        afterImageCooldownTimer.Connect("timeout", this, nameof(AfterImageCooldownTimerTimeout), new Godot.Collections.Array(afterImageCooldownTimer));
         AddChild(afterImageCooldownTimer);
         afterImageCooldownTimer.Start();
 
@@ -195,14 +199,14 @@ public class Player : KinematicBody2D
         afterImageOnColldown = false;
         // remove timer
         timer.QueueFree();
-        
+
         // remove after image
         if (!(afterImage is null))
         {
             afterImage.QueueFree();
             afterImage = null;
         }
-    
+
     }
     public override void _PhysicsProcess(float delta)
     {
@@ -212,6 +216,10 @@ public class Player : KinematicBody2D
         Vector2 input_vector = new Vector2();
         input_vector.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         input_vector.y = Input.GetActionStrength("down") - Input.GetActionStrength("up");
+
+        if (input_vector.x != 0)
+            this.PlayerSprite.FlipH = input_vector.x <= .5f; // this line makes it so that the player will face the direction of where its going.
+
         // update coyote timer
         coyoteTimer += delta;
         if (coyoteTimer > coyoteTimeLimit)
@@ -237,36 +245,36 @@ public class Player : KinematicBody2D
 
         }
         // check if approaching apex
-        if (!wasJustOnFloor& (velocity.y > -gravity/2))
+        if (!wasJustOnFloor & (velocity.y > -gravity / 2))
         {
             // set nearApex to true
             nearApex = true;
         }
         // check if past apex 
-        if (nearApex & (velocity.y > gravity/2))
+        if (nearApex & (velocity.y > gravity / 2))
         {
             // set nearApex to false
             nearApex = false;
         }
         // jump begin
-        if (Input.IsActionJustPressed("jump")&(IsOnFloor()|wasJustOnFloor))
+        if (Input.IsActionJustPressed("jump") & (IsOnFloor() | wasJustOnFloor))
         {
             // jump
             velocity.y = -jumpStrength;
             // set jumping to true
             isJumping = true;
             // set fallQuick to false
-            fallQuick = false;  
+            fallQuick = false;
         }
         // jump buffer
-        if (Input.IsActionJustPressed("jump")&(isJumping))
+        if (Input.IsActionJustPressed("jump") & (isJumping))
         {
             // set bufferJump to true
             bufferJump = true;
             bufferJumpTimer = 0;
         }
         // check if jump released early
-        if (@Input.IsActionJustReleased("jump")&isJumping)
+        if (@Input.IsActionJustReleased("jump") & isJumping)
         {
             // stop jumping
             velocity.y = 0;
@@ -291,12 +299,12 @@ public class Player : KinematicBody2D
             // fall normally
             velocity.y += gravity;
         }
-        
+
         velocity.x = input_vector.x * speed;
         velocity = MoveAndSlide(velocity, Vector2.Up);
 
         // clamp velocity
-        velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength/2);
+        velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength / 2);
         // ##### Vacuum Ability Rotation
         // rotate vaccum area toward mouse position
         VacuumArea.Rotation = GetGlobalMousePosition().AngleToPoint(GlobalPosition);
