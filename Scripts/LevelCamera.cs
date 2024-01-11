@@ -17,6 +17,8 @@ public class LevelCamera : Camera2D
 
     public override void _PhysicsProcess(float delta)
     {
+        // if player is null, return
+        if (player == null) return;
         // get target
         target = player.Position;
         // move towards target
