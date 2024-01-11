@@ -41,6 +41,7 @@ public class Laser : StaticBody2D
         SetPhysicsProcess(false);
         line.Width = 0;
         RayCast.CastTo = new Vector2(100000,0);
+        audioLaser.Stream = (AudioStream) ResourceLoader.Load("res://Assets/Sound/Laser/Laser.mp3");
         //
         ShutOnLaser(true);
     }

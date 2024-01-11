@@ -34,3 +34,5 @@ shape = SubResource( 4 )
 
 [node name="Bottum" type="Sprite" parent="BottumButton"]
 texture = ExtResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

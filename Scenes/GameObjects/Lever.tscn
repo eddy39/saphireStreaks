@@ -23,3 +23,5 @@ hframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2( 33, 34 )
 shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
