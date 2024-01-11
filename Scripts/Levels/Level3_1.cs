@@ -7,6 +7,7 @@ public class Level3_1 : BaseLevel
     public Door door;
     public StepButton button;
     
+    public NPC npc;
 
     
     public int doorOpenCount = 0;
@@ -16,7 +17,11 @@ public class Level3_1 : BaseLevel
         // Nodes
         door = GetNode<Door>("Door");
         button = GetNode<StepButton>("StepButton");
-        
+        npc = GetNode<NPC>("NPC");
+        // Setup npc
+        npc.dialogue = new TestDialogue();
+        ui.dialogueBox.dialogue = npc.dialogue;
+        npc.OnDialogueInteractEvent += ui.dialogueBox.StartDialogue;
         // Connect
         
         button.ButtonPressedEvent += door.OpenCloseDoor;

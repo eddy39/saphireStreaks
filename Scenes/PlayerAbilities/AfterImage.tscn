@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Shared/Interactable.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 84.0536
+radius = 117.004
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 66.0076

@@ -65,10 +65,10 @@ public class AfterImage : ThrowBox
         {
             if (colObject is Laser laser)
             {
-                if (!laser.CanBeDisabled)
-                    return;
+                if (laser.CanBeDisabled)
+                    laser.OverloadLaser();
+                    
 
-                laser.OverloadLaser();
             }
             if (colObject is DestructableBox box)
             {

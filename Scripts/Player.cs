@@ -320,7 +320,7 @@ public class Player : KinematicBody2D
         velocity = MoveAndSlide(velocity, Vector2.Up);
 
         // clamp velocity
-        velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength/2);
+        velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength);
         // ##### Animation
         if (velocity.x != 0)
         {
