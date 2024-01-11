@@ -45,7 +45,7 @@ script = ExtResource( 2 )
 modulate = Color( 1, 1, 1, 0.537255 )
 material = SubResource( 7 )
 position = Vector2( 2, 0 )
-points = PoolVector2Array( 0, 0, 128, 0 )
+points = PoolVector2Array( 6, 0, 128, 0 )
 width = 8.0
 width_curve = SubResource( 8 )
 default_color = Color( 0.67, 2.67, 1.74422, 1 )
@@ -68,6 +68,7 @@ cast_to = Vector2( 1000, 0 )
 [node name="audioLaser" type="AudioStreamPlayer2D" parent="."]
 
 [node name="particlesBeam" type="Particles2D" parent="."]
+visible = false
 lifetime = 0.3
 local_coords = false
 process_material = SubResource( 1 )
