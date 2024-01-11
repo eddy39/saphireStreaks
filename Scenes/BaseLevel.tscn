@@ -25,10 +25,10 @@ position = Vector2( 103, 610 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
 [node name="LevelCamera" parent="." instance=ExtResource( 7 )]
-limit_left = 0
-limit_top = 0
-limit_right = 1300
-limit_bottom = 800
+limit_left = -50
+limit_top = -50
+limit_right = 1400
+limit_bottom = 900
 limit_smoothed = true
 
 [node name="UI" parent="." instance=ExtResource( 8 )]

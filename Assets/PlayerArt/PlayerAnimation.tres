@@ -1,0 +1,27 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=2]
+
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/006.png" type="Texture" id=1]
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/003.png" type="Texture" id=2]
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/007.png" type="Texture" id=3]
+[ext_resource path="res://Assets/PlayerArt/walkAnimation/003.png" type="Texture" id=4]
+[ext_resource path="res://Assets/PlayerArt/walkAnimation/005.png" type="Texture" id=5]
+[ext_resource path="res://Assets/PlayerArt/walkAnimation/001.png" type="Texture" id=6]
+[ext_resource path="res://Assets/PlayerArt/walkAnimation/009.png" type="Texture" id=7]
+[ext_resource path="res://Assets/PlayerArt/walkAnimation/007.png" type="Texture" id=8]
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/001.png" type="Texture" id=9]
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/002.png" type="Texture" id=10]
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/004.png" type="Texture" id=11]
+[ext_resource path="res://Assets/PlayerArt/idleAnimation/005.png" type="Texture" id=12]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 2 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+} ]

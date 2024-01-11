@@ -33,10 +33,13 @@ public class Player : KinematicBody2D
     public float succtionForce = 30;
     public float vacuumThrowForce = 1500;
     public bool vaccumActive = false;
-    
+    // Sprites
+    public AnimatedSprite animatedSprite;
     public override void _Ready()
     {
         // Get Nodes
+        animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+
         VacuumArea = GetNode<Area2D>("VacuumArea");
         VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
         // Connect Signals
@@ -297,6 +300,16 @@ public class Player : KinematicBody2D
 
         // clamp velocity
         velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength/2);
+        // ##### Animation
+        if (velocity.x != 0)
+        {
+            animatedSprite.Play("Walk");
+            animatedSprite.FlipH = velocity.x < 0;
+        }
+        else
+        {
+            animatedSprite.Play("Idle");
+        }
         // ##### Vacuum Ability Rotation
         // rotate vaccum area toward mouse position
         VacuumArea.Rotation = GetGlobalMousePosition().AngleToPoint(GlobalPosition);
