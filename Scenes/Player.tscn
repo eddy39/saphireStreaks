@@ -9,6 +9,8 @@ height = 448.0
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
+speed = 210.0
+gravity = 40.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )

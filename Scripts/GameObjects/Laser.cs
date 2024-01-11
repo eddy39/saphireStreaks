@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public class Laser : StaticBody2D
 {
@@ -29,13 +30,13 @@ public class Laser : StaticBody2D
     public override void _Ready()
     {
         // get nodes
-        line = (Line2D) FindNode("Line2D");
-        tween = (Tween) FindNode("Tween");
-        particlesBeam = (Particles2D) FindNode("particlesBeam");
-        audioLaser = (AudioStreamPlayer2D) FindNode("audioLaser");
-        RayCast = (RayCast2D) FindNode("RayCast2D");
-        PeriodicTimer = (Timer) FindNode("PeriodicTimer");
-        DisableTimer = (Timer) FindNode("DisableTimer");
+        line = (Line2D) GetNode("Line2D");
+        tween = (Tween) GetNode("Tween");
+        particlesBeam = (Particles2D) GetNode("particlesBeam");
+        audioLaser = (AudioStreamPlayer2D) GetNode("audioLaser");
+        RayCast = (RayCast2D) GetNode("RayCast2D");
+        PeriodicTimer = (Timer) GetNode("PeriodicTimer");
+        DisableTimer = (Timer) GetNode("DisableTimer");
         // initial settings
         SetPhysicsProcess(false);
         line.Width = 0;
@@ -115,8 +116,9 @@ public class Laser : StaticBody2D
         else if (firingMode == FiringMode.Periodic)
         {
             //create timers to start and top laser
-            
-            PeriodicTimer.Disconnect("timeout", this, nameof(SwitchLaser));
+            if (PeriodicTimer.IsConnected("timeout", this, nameof(SwitchLaser)))
+                PeriodicTimer.Disconnect("timeout", this, nameof(SwitchLaser));
+                
             PeriodicTimer.Stop();
 
             StopLaser();

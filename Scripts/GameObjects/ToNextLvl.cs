@@ -4,6 +4,7 @@ using System;
 public class ToNextLvl : Area2D
 {
     [Export] public string NextLevel;
+    [Export] public bool CanChangeScene;
     public override void _Ready()
     {
         Connect("body_entered", this, nameof(OnBodyEntered));
@@ -11,8 +12,12 @@ public class ToNextLvl : Area2D
     public void OnBodyEntered(Node body)
     {
         if (body is Player)
-        {
-            GetTree().ChangeScene(NextLevel);
+        {GD.Print("chnged");
+            GameState.InvokeLevelsChanged();
+            GD.Print("ewqe");
+            
+            if (CanChangeScene) //Used for debugging
+                GetTree().ChangeScene(NextLevel);
         }
     }
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -7,9 +7,9 @@ public class LevelCamera : Camera2D
     // movemetn vars
     private Vector2 velocity = new Vector2();
     private Vector2 target = new Vector2();
-    private Vector2 offset = new Vector2(0, -15);
-    private float speedx = 10;
-    private float speedy = 10;
+    [Export] private Vector2 offset = new Vector2(0, 0);
+    [Export] private float speedx = 10;
+    [Export] private float speedy = 10;
     public override void _Ready()
     {
         
@@ -20,8 +20,8 @@ public class LevelCamera : Camera2D
         // get target
         target = player.Position;
         // move towards target
-        velocity.x = Mathf.Lerp(Position.x, target.x, speedx * delta);
-        velocity.y = Mathf.Lerp(Position.y, target.y, speedy * delta);
+        velocity.x = Mathf.Lerp(Position.x, target.x, speedx); // Never do interpolation with delta
+        velocity.y = Mathf.Lerp(Position.y, target.y, speedy);
         // apply velocity
         Position = velocity + offset;
     }
