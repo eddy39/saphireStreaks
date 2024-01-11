@@ -29,7 +29,7 @@ public class Player : KinematicBody2D
     public AfterImage afterImage;
     public Area2D VacuumArea;
     public Node2D VaccumPoint;
-    private Sprite PlayerSprite;
+    //private Sprite PlayerSprite;
     public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
     public float succtionForce = 30;
     public float vacuumThrowForce = 1500;
@@ -44,7 +44,6 @@ public class Player : KinematicBody2D
         VacuumArea = GetNode<Area2D>("VacuumArea");
         VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
 
-        this.PlayerSprite = GetNode<Sprite>("Sprite");
 
         // Connect Signals
         VacuumArea.Connect("body_entered", this, nameof(OnVacuumAreaBodyEntered));
@@ -220,9 +219,7 @@ public class Player : KinematicBody2D
         input_vector.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         input_vector.y = Input.GetActionStrength("down") - Input.GetActionStrength("up");
 
-        if (input_vector.x != 0)
-            this.PlayerSprite.FlipH = input_vector.x <= .5f; // this line makes it so that the player will face the direction of where its going.
-
+        
         // update coyote timer
         coyoteTimer += delta;
         if (coyoteTimer > coyoteTimeLimit)

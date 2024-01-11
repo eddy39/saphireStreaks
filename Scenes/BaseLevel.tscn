@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/TileMaps/Bunker.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LevelSprites/LevelBG.png" type="Texture" id=2]
@@ -6,22 +6,6 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/LevelCamera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=8]
-
-[sub_resource type="Environment" id=1]
-background_mode = 4
-tonemap_mode = 3
-tonemap_white = 0.9
-glow_enabled = true
-glow_intensity = 1.0
-glow_bloom = 0.05
-glow_blend_mode = 1
-glow_hdr_scale = 0.95
-glow_bicubic_upscale = true
-glow_high_quality = true
-adjustment_enabled = true
-adjustment_brightness = 0.95
-adjustment_contrast = 0.9
-adjustment_saturation = 1.1
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 3 )
@@ -41,13 +25,12 @@ position = Vector2( 103, 610 )
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
 [node name="LevelCamera" parent="." instance=ExtResource( 7 )]
+offset = Vector2( 0, -150 )
 limit_left = -50
 limit_top = -50
 limit_right = 1400
 limit_bottom = 900
 limit_smoothed = true
+offset = Vector2( 0, -150 )
 
 [node name="UI" parent="." instance=ExtResource( 8 )]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )

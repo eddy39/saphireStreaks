@@ -29,7 +29,7 @@ public static class GameState
     {
         Gems[(int)color] = true;
         GemCount[color]++;
-GD.Print("1");
+
         GemsUpdatedNotifier?.Invoke(color);
     }
 

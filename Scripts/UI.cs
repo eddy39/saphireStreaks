@@ -28,6 +28,7 @@ public class UI : CanvasLayer
         base._ExitTree();
         // Connect to GameState
         GameState.GemsUpdatedNotifier -= GetGems;
+        GameState.LevelsChanged -= InitializeGems;
     }
 
     private void InitializeGems()

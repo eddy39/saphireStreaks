@@ -10,8 +10,9 @@ public class AbilityIcon : TextureRect
 	private Label Label;
     public override void _Ready()
     {
-		/* this.Label = GetNode<Label>("Label");
-		GameState.GemsUpdatedNotifier += (_) => {
+		this.Label = GetNode<Label>("Label");
+		this.Label.Visible = false;
+		/* GameState.GemsUpdatedNotifier += (_) => {
 			this.Label.Text = GameState.GemCount[AbilityColor].ToString();
 		}; */
 
