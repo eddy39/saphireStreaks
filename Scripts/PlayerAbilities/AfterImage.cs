@@ -4,11 +4,21 @@ using System;
 public class AfterImage : ThrowBox
 {
     private Area2D Detector;
+    public Interactable interactable;
+    public AnimatedSprite animatedSprite;
+    private ShaderMaterial ShaderMaterial = GD.Load<ShaderMaterial>("res://Scripts/Shared/OutlineShader.tres");
     /* public Vector2 velocity = new Vector2();
     public float gravity = 15; */
     public override void _Ready()
     {
         this.Detector = base.GetNode<Area2D>("Detector");
+        this.animatedSprite = base.GetNode<AnimatedSprite>("AnimatedSprite");
+        // interactble stuff
+        this.interactable = GetNode<Interactable>("Interactable");
+        
+        this.interactable.PlayerEntered += OnPlayerEntered;
+        this.interactable.PlayerExited += OnPlayerExited;
+
     }
     public override void _UnhandledKeyInput(InputEventKey @event)
     {
@@ -33,6 +43,18 @@ public class AfterImage : ThrowBox
         velocity.y += gravity;
         // apply velocity
         MoveAndSlide(velocity, Vector2.Up); */
+    }
+    
+    private void OnPlayerEntered()
+    {
+        
+        this.animatedSprite.Material = ShaderMaterial;
+        
+    }
+
+    private void OnPlayerExited()
+    {
+        this.animatedSprite.Material = null;
     }
 
     // Detonate ability

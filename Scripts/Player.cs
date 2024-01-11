@@ -29,6 +29,7 @@ public class Player : KinematicBody2D
     public AfterImage afterImage;
     public Area2D VacuumArea;
     public Node2D VaccumPoint;
+    public Timer afterImageCooldownTimer;
     //private Sprite PlayerSprite;
     public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
     public float succtionForce = 30;
@@ -160,14 +161,17 @@ public class Player : KinematicBody2D
         // spawn after image
         afterImage = (AfterImage)ResourceLoader.Load<PackedScene>("res://Scenes/PlayerAbilities/AfterImage.tscn").Instance();
         afterImage.Position = Position;
+        
         // add this to CollisionException
         afterImage.AddCollisionExceptionWith(this);
         /// add after image to scene
         GetParent().AddChild(afterImage);
+        // Connect to interact
+        afterImage.interactable.Interacted += ConsumeAfterImage;
         // set after image on cooldown
         afterImageOnColldown = true;
         // start cooldown timer
-        Timer afterImageCooldownTimer = new Timer
+        afterImageCooldownTimer = new Timer
         {
             OneShot = true,
             WaitTime = afterImageCooldownTimeLimit
@@ -180,7 +184,19 @@ public class Player : KinematicBody2D
         // On After image deletion, call OnAfterImageExited
         afterImage.Connect("tree_exited", this, nameof(OnAfterImageExited));
     }
-
+    public void ConsumeAfterImage()
+    {
+        // remove after image
+        if (!(afterImage is null))
+        {
+            afterImage.QueueFree();
+            afterImage = null;
+        }
+        // set after image off cooldown
+        afterImageOnColldown = false;
+        // remove timer
+        afterImageCooldownTimer.QueueFree(); 
+    }
     public void SubstituteToAfterImage()
     {
         var prevPosition = this.Position;
