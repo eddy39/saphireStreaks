@@ -17,7 +17,7 @@ public class Player : KinematicBody2D
     private float bufferJumpTimer = 0;
     // movement parameters
     [Export] public float acceleration = 3; // acceleration now
-    [Export] public float jumpStrength = 650;
+    [Export] public float jumpStrength = 640;
     [Export] public float gravity = 20;
     public float maxSpeed = 200;
     public float quickFallFactor = 1.5f;
