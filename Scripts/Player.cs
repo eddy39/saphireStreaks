@@ -41,7 +41,7 @@ public class Player : KinematicBody2D
     //private Sprite PlayerSprite;
     public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
     public float succtionForce = 30;
-    public float vacuumThrowForce = 1500;
+    public float vacuumThrowForce = 800;
     public bool vaccumActive = false;
     // Sprites
     public AnimatedSprite animatedSprite;
@@ -134,11 +134,16 @@ public class Player : KinematicBody2D
     {
         foreach (ThrowBox kinBody in VacuumedBodies)
         {
+            // target is mouse position
+            Vector2 target = GetGlobalMousePosition();
             // direction from kinbody to VaccumPoint
-            Vector2 direction = VaccumPoint.GlobalPosition - kinBody.GlobalPosition;
-            kinBody.velocity += direction.Normalized() * succtionForce;
+            
+            Vector2 direction = target - kinBody.GlobalPosition;
+            kinBody.velocity += direction.Normalized() * succtionForce *direction.Length() / 10 ;
             // clamp velocity
-            velocity = new Vector2(Mathf.Clamp(velocity.x, -200, 200), Mathf.Clamp(velocity.y, -200, 200));
+            float clampValues = 150;
+            kinBody.velocity = new Vector2(Mathf.Clamp(kinBody.velocity.x, -clampValues, clampValues)
+                            , Mathf.Clamp(kinBody.velocity.y, -clampValues, clampValues));
         }
 
     }
