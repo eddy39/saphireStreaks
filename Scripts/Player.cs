@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class Player : KinematicBody2D
 {
@@ -37,6 +38,8 @@ public class Player : KinematicBody2D
     public bool vaccumActive = false;
     // Sprites
     public AnimatedSprite animatedSprite;
+    private Particles2D JumpParticle;
+    private Particles2D MovementPartice;
     public override void _Ready()
     {
         // Get Nodes
@@ -44,7 +47,8 @@ public class Player : KinematicBody2D
 
         VacuumArea = GetNode<Area2D>("VacuumArea");
         VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
-
+        JumpParticle = GetNode<Particles2D>("JumpParticle");
+        MovementPartice = GetNode<Particles2D>("MovementParticle");
 
         // Connect Signals
         VacuumArea.Connect("body_entered", this, nameof(OnVacuumAreaBodyEntered));
@@ -235,6 +239,7 @@ public class Player : KinematicBody2D
         input_vector.x = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         input_vector.y = Input.GetActionStrength("down") - Input.GetActionStrength("up");
 
+        MovementPartice.Emitting = input_vector.Length() != 0 && base.IsOnFloor();
         
         // update coyote timer
         coyoteTimer += delta;
@@ -277,6 +282,8 @@ public class Player : KinematicBody2D
         {
             // jump
             velocity.y = -jumpStrength;
+            this.JumpParticle.Emitting = true;
+            // this.JumpParticle.GetChild<Particles2D>(0).Emitting = true;
             // set jumping to true
             isJumping = true;
             // set fallQuick to false
