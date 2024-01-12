@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform float gray_level : hint_range(0.0, 1.0, 0.1) = 0.5;
+uniform vec4 some_color : hint_color = vec4(1.0);
+
+void fragment() {
+    vec4 color = texture(TEXTURE, UV);
+    float y = UV.y;
+    
+    if ((1.-y) < gray_level) {
+        color.rgb = mix(color.rgb,some_color.rgb,0.8);
+    }
+    
+    COLOR = color;
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 2 )
+shader_param/gray_level = 0.0
+shader_param/some_color = Color( 0.270588, 0.270588, 0.270588, 1 )

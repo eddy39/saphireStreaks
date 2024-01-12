@@ -31,6 +31,12 @@ public class Player : KinematicBody2D
     public Area2D VacuumArea;
     public Node2D VaccumPoint;
     public Timer afterImageCooldownTimer;
+
+    public event Action<float> AfterImageUsed;
+    public event Action AfterImageConsumed;
+    public event Action AfterImageDetonated;
+    
+    
     //private Sprite PlayerSprite;
     public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
     public float succtionForce = 30;
@@ -61,6 +67,17 @@ public class Player : KinematicBody2D
         if (@event.IsActionPressed("ability"))
         {
             // check if ability is unlocked
+            if (GameState.Gems[(int)Gem.Color.Purple])
+            {
+                // check if ability is not on cooldown
+                if (this.afterImage != null)
+                {
+                    // use ability
+                    SubstituteToAfterImage();       
+                }
+            }
+
+            // check if ability is unlocked
             if (GameState.Gems[(int)Gem.Color.Blue])
             {
                 // check if ability is not on cooldown
@@ -71,19 +88,6 @@ public class Player : KinematicBody2D
 
                 }
             }
-
-            // check if ability is unlocked
-            if (GameState.Gems[(int)Gem.Color.Purple])
-            {
-                // check if ability is not on cooldown
-                if (this.afterImage != null)
-                {
-                    // use ability
-                    SubstituteToAfterImage();
-
-                }
-            }
-
         }
 
         // Check if detonate key is pressed [X]
@@ -97,6 +101,7 @@ public class Player : KinematicBody2D
 
             //GameState.RemoveGem(Gem.Color.Red);
             afterImage.Detonate(); //detonate after image
+            AfterImageDetonated?.Invoke();
         }
         // vacuum ability
         if (@event.IsActionPressed("vacuum"))
@@ -181,9 +186,12 @@ public class Player : KinematicBody2D
             WaitTime = afterImageCooldownTimeLimit
         };
 
-        afterImageCooldownTimer.Connect("timeout", this, nameof(AfterImageCooldownTimerTimeout), new Godot.Collections.Array(afterImageCooldownTimer));
+        afterImageCooldownTimer.Connect("timeout", this, nameof(AfterImageCooldownTimerTimeout)
+        , new Godot.Collections.Array(afterImageCooldownTimer));
         AddChild(afterImageCooldownTimer);
         afterImageCooldownTimer.Start();
+        // emit event
+        AfterImageUsed?.Invoke(afterImageCooldownTimeLimit);
 
         // On After image deletion, call OnAfterImageExited
         afterImage.Connect("tree_exited", this, nameof(OnAfterImageExited));
@@ -199,13 +207,20 @@ public class Player : KinematicBody2D
         // set after image off cooldown
         afterImageOnColldown = false;
         // remove timer
+        afterImageCooldownTimer.Disconnect("timeout", this, nameof(AfterImageCooldownTimerTimeout));
         afterImageCooldownTimer.QueueFree(); 
+        //
+        AfterImageConsumed?.Invoke();
     }
     public void SubstituteToAfterImage()
     {
-        var prevPosition = this.Position;
-        this.Position = afterImage.Position;
-        afterImage.Position = prevPosition;
+        // swap positions
+        Vector2 prevPosition = new Vector2(this.GlobalPosition);
+        this.GlobalPosition = afterImage.GlobalPosition;
+        afterImage.GlobalPosition = prevPosition;
+        // reset velocity
+        velocity = Vector2.Zero;
+        afterImage.velocity = Vector2.Zero;
     }
 
     // This function is invoked when after image exited

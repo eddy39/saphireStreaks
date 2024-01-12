@@ -22,8 +22,10 @@ public class BaseLevel : Node2D
         player.Position = spawnPoint.Position;
         player.spawnPosition = spawnPoint.Position;
         levelCamera.Position = spawnPoint.Position;
-        //
-        
+        // Connect player and ui
+        player.AfterImageUsed += ui.StartAfterImageCooldown;
+        player.AfterImageConsumed += ui.StopAfterImageCooldown;
+        player.AfterImageDetonated += ui.DeactivateRedPurple;
     }
 
 }

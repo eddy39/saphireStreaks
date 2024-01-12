@@ -3,42 +3,45 @@ using System;
 
 public class AbilityIcon : TextureRect
 {
-    /* [Export] */
+    [Export]
     public Gem.Color AbilityColor;
     // Nodes
     public TextureRect GemTexture;
-	private Label Label;
+	public ShaderMaterial GemMaterial;
+	private Label KeyLabel;
     public override void _Ready()
     {
-		this.Label = GetNode<Label>("Label");
-		this.Label.Visible = false;
-		/* GameState.GemsUpdatedNotifier += (_) => {
-			this.Label.Text = GameState.GemCount[AbilityColor].ToString();
-		}; */
-
+		this.KeyLabel = (Label) FindNode("KeyLabel");
+		
         // Get Gem
         GemTexture = GetNode<TextureRect>("Gem");
+		GemTexture.Material =(ShaderMaterial) ResourceLoader.Load("res://Scenes/UIElements/GreyCooldownMaterial.tres").Duplicate();
+		
+		GemMaterial = (ShaderMaterial) GemTexture.Material;
         // Load Texture based on color
 		switch (AbilityColor)
 		{
 			case Gem.Color.Blue:
 				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Blue_Gem.png");
+				KeyLabel.Text = "E";
 				break;
 			case Gem.Color.Yellow:
 				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Yellow_Gem.png");
+				KeyLabel.Text = "R";
 				break;
 			case Gem.Color.Red:
 				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Red_Gem.png");
+				KeyLabel.Text = "X";
 				break;
 			case Gem.Color.Purple:
 				GemTexture.Texture = ResourceLoader.Load<Texture>("res://Assets/UI/Purple_Gem.png");
+				KeyLabel.Text = "E";
 				break;
 		}
     }
 	
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	public void UpdateGemShader(float value)
+	{
+		GemMaterial.SetShaderParam("gray_level", value);
+	}
 }
