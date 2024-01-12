@@ -82,7 +82,7 @@ public class Player : KinematicBody2D
             if (GameState.Gems[(int)Gem.Color.Blue])
             {
                 // check if ability is not on cooldown
-                if (!afterImageOnColldown || this.afterImage == null)
+                if (!afterImageOnColldown )//|| this.afterImage == null
                 {
                     // use ability
                     UseAfterImage();
