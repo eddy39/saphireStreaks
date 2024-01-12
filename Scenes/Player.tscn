@@ -33,6 +33,9 @@ color = Color( 1, 0.992157, 0.992157, 1 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
+speed = 200.0
+jumpStrength = 775.0
+gravity = 30.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
@@ -62,7 +65,7 @@ material = SubResource( 8 )
 position = Vector2( 0, -4 )
 emitting = false
 amount = 12
-lifetime = 0.5
+lifetime = 0.4
 one_shot = true
 explosiveness = 0.52
 local_coords = false
