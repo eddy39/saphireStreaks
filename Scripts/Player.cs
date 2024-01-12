@@ -16,9 +16,10 @@ public class Player : KinematicBody2D
     private bool bufferJump = false;
     private float bufferJumpTimer = 0;
     // movement parameters
-    [Export] public float speed = 190;
+    [Export] public float acceleration = 3; // acceleration now
     [Export] public float jumpStrength = 650;
     [Export] public float gravity = 20;
+    public float maxSpeed = 200;
     public float quickFallFactor = 1.5f;
     public float slowFallFactor = 0.90f;
     public float coyoteTimeLimit = .1f;
@@ -340,12 +341,19 @@ public class Player : KinematicBody2D
             // fall normally
             velocity.y += gravity;
         }
-
-        velocity.x = input_vector.x * speed;
+        // sideways movement
+        velocity.x += input_vector.x * acceleration;
+        // apply friction
+        if (Mathf.Abs(input_vector.x) < 0.01f)
+        {
+            velocity.x *= 0.8f;
+        }
+        // move player
         velocity = MoveAndSlide(velocity, Vector2.Up);
 
         // clamp velocity
         velocity.y = Mathf.Clamp(velocity.y, -jumpStrength, jumpStrength);
+        velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         // ##### Animation
         if (velocity.x != 0)
         {
