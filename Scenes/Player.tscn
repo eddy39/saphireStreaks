@@ -64,7 +64,7 @@ animation = "Idle"
 offset = Vector2( 0, -30 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -1, 0, -26, 0, -28, -27, -29, -50, -26, -57, 27, -56, 29, -50, 29, -25, 29, 0 )
+polygon = PoolVector2Array( -1, 0, -24, 0, -28, -27, -29, -50, -25, -57, 26, -56, 29, -50, 29, -25, 26, 0 )
 
 [node name="Label" type="Label" parent="."]
 margin_right = 40.0

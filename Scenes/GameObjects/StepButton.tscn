@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/LevelSprites/ButtonBottum.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/GameObjects/StepButton.cs" type="Script" id=2]
@@ -6,9 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 7, 17.5 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 5, 22 )
 
 [node name="StepButton" type="Node2D"]
 script = ExtResource( 2 )
@@ -27,10 +24,10 @@ texture = ExtResource( 3 )
 [node name="BottumButton" type="StaticBody2D" parent="."]
 position = Vector2( 0, -5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottumButton"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="BottumButton"]
 position = Vector2( 1.42852e-05, -1.90735e-06 )
 rotation = 1.5708
-shape = SubResource( 4 )
+polygon = PoolVector2Array( -4.99993, 18, 6.00012, 34, 5.99988, -34, -5.00006, -17 )
 
 [node name="Bottum" type="Sprite" parent="BottumButton"]
 texture = ExtResource( 1 )

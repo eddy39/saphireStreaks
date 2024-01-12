@@ -21,8 +21,8 @@ public class NPC : KinematicBody2D
     {
         base._PhysicsProcess(delta);
         // apply gravity
-        velocity.y += 15;
+        /* velocity.y += 15;
         // apply move
-        velocity = MoveAndSlide(velocity, Vector2.Up);
+        velocity = MoveAndSlide(velocity, Vector2.Up); */
     }
 }

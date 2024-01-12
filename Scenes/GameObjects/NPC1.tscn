@@ -20,8 +20,8 @@
 [ext_resource path="res://Assets/NPCAnims/NPC1/017.png" type="Texture" id=18]
 [ext_resource path="res://Assets/NPCAnims/NPC1/011.png" type="Texture" id=19]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 21, 27.5 )
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 5.0
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -38,14 +38,15 @@ radius = 41.0122
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 4.5 )
-shape = SubResource( 1 )
+position = Vector2( -1, 27 )
+rotation = 1.5708
+shape = SubResource( 5 )
 disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 4 )
-frame = 2
+frame = 10
 playing = true
 
 [node name="Interactable" parent="." instance=ExtResource( 5 )]
