@@ -1,11 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/PlayerArt/PlayerAnimation.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
+[ext_resource path="res://Assets/LevelSprites/Block.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 83.9992
-height = 366.002
+radius = 145.0
+height = 448.0
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+
+[sub_resource type="Curve" id=6]
+max_value = 0.6
+_data = [ Vector2( 0, 0.990798 ), 0.0, 0.0, 0, 0, Vector2( 0, 0.6 ), 0.0, 0.0, 0, 0, Vector2( 0.27349, 0.446319 ), 0.0, 0.0, 0, 0, Vector2( 0.65604, 0.394785 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+width = 100
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 15, 1, 0 )
+spread = 15.0
+gravity = Vector3( 0, -10, 0 )
+linear_accel = 200.0
+radial_accel = 2.0
+scale = 0.1
+scale_random = 0.08
+scale_curve = SubResource( 7 )
+color = Color( 1, 0.992157, 0.992157, 1 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -32,3 +56,15 @@ shape = SubResource( 1 )
 
 [node name="VaccumPoint" type="Node2D" parent="VacuumArea"]
 position = Vector2( 90, 0 )
+
+[node name="JumpParticle" type="Particles2D" parent="."]
+material = SubResource( 8 )
+position = Vector2( 0, -4 )
+emitting = false
+amount = 12
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.52
+local_coords = false
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )

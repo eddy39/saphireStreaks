@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class Player : KinematicBody2D
 {
@@ -37,6 +38,7 @@ public class Player : KinematicBody2D
     public bool vaccumActive = false;
     // Sprites
     public AnimatedSprite animatedSprite;
+    private Particles2D JumpParticle;
     public override void _Ready()
     {
         // Get Nodes
@@ -44,7 +46,7 @@ public class Player : KinematicBody2D
 
         VacuumArea = GetNode<Area2D>("VacuumArea");
         VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
-
+        JumpParticle = GetNode<Particles2D>("JumpParticle");
 
         // Connect Signals
         VacuumArea.Connect("body_entered", this, nameof(OnVacuumAreaBodyEntered));
@@ -277,6 +279,7 @@ public class Player : KinematicBody2D
         {
             // jump
             velocity.y = -jumpStrength;
+            this.JumpParticle.Emitting = true;
             // set jumping to true
             isJumping = true;
             // set fallQuick to false
