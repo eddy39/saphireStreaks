@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DialogueBox : TextureRect
+public class DialogueBox : NinePatchRect
 {
 
     public Label TextLabel;
