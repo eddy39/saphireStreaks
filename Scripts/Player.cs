@@ -214,6 +214,9 @@ public class Player : KinematicBody2D
     }
     public void SubstituteToAfterImage()
     {
+        // add collision exception
+        afterImage.AddCollisionExceptionWith(this);
+        this.AddCollisionExceptionWith(afterImage);
         // swap positions
         Vector2 prevPosition = new Vector2(this.GlobalPosition);
         this.GlobalPosition = afterImage.GlobalPosition;
@@ -368,6 +371,7 @@ public class Player : KinematicBody2D
             {
                 // remove collision exception
                 afterImage.RemoveCollisionExceptionWith(this);
+                this.RemoveCollisionExceptionWith(afterImage);
             }
         }
     }
