@@ -40,7 +40,7 @@ rotation = -1.5708
 position = Vector2( 1345, 577 )
 
 [node name="NPC" parent="." index="10" instance=ExtResource( 2 )]
-position = Vector2( 373, 412 )
+position = Vector2( 374, 419 )
 
 [node name="DestructableBox" parent="." index="11" instance=ExtResource( 10 )]
 position = Vector2( 992, 416 )

@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/GameObjects/Purple Gem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/TileMaps/CaveBG.tres" type="TileSet" id=7]
 [ext_resource path="res://Assets/TileMaps/Cave.tres" type="TileSet" id=8]
-[ext_resource path="res://Scenes/GameObjects/NPC1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/GameObjects/NPC2.tscn" type="PackedScene" id=9]
 
 [node name="4-1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -41,5 +41,5 @@ position = Vector2( 2432, 64 )
 [node name="Purple Gem" parent="." index="9" instance=ExtResource( 6 )]
 position = Vector2( 353, 622 )
 
-[node name="NPC" parent="." index="10" instance=ExtResource( 9 )]
-position = Vector2( 444, 600 )
+[node name="NPC" parent="." index="11" instance=ExtResource( 9 )]
+position = Vector2( 499, 611 )

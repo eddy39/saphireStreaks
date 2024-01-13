@@ -67,3 +67,5 @@ amount = 4
 lifetime = 2.0
 process_material = SubResource( 4 )
 texture = ExtResource( 4 )
+
+[node name="AfterImageAudio" type="AudioStreamPlayer2D" parent="." index="10"]

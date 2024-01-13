@@ -22,7 +22,7 @@ public class Level5_1 : BaseLevel
         laser = GetNode<Laser>("Laser");
         npc = GetNode<NPC>("NPC");
         // Setup npc
-        npc.dialogue = new TestDialogue();
+        npc.dialogue = new Dialogue4();
         ui.dialogueBox.dialogue = npc.dialogue;
         npc.OnDialogueInteractEvent += ui.dialogueBox.StartDialogue;
         // Connect

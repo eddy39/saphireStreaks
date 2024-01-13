@@ -24,12 +24,12 @@ texture = ExtResource( 3 )
 [node name="BottumButton" type="StaticBody2D" parent="."]
 position = Vector2( 0, -5 )
 
+[node name="Bottum" type="Sprite" parent="BottumButton"]
+texture = ExtResource( 1 )
+
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="BottumButton"]
 position = Vector2( 1.42852e-05, -1.90735e-06 )
 rotation = 1.5708
 polygon = PoolVector2Array( -4.99993, 18, 6.00012, 34, 5.99988, -34, -5.00006, -17 )
-
-[node name="Bottum" type="Sprite" parent="BottumButton"]
-texture = ExtResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

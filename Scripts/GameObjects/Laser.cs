@@ -24,6 +24,7 @@ public class Laser : StaticBody2D
         Periodic,
         
     }
+    [Export] public float dbAdjustment = 0f;
     [Export] public FiringMode firingMode = FiringMode.Continuous;
     [Export] public float periodLength = 2f;
     [Export] public bool CanBeDisabled { get; set; }
@@ -42,6 +43,7 @@ public class Laser : StaticBody2D
         line.Width = 0;
         RayCast.CastTo = new Vector2(100000,0);
         audioLaser.Stream = (AudioStream) ResourceLoader.Load("res://Assets/Sound/Laser/Laser.mp3");
+        audioLaser.VolumeDb = dbAdjustment;
         //
         ShutOnLaser(true);
     }
@@ -96,7 +98,7 @@ public class Laser : StaticBody2D
         }
         else if (firingMode == FiringMode.Periodic)
         {
-            //create timers to start and top laser
+            // create timers to start and top laser
             
             PeriodicTimer.Connect("timeout", this, nameof(SwitchLaser));
             PeriodicTimer.WaitTime = periodLength;

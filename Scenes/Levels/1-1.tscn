@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GameObjects/Blue Gem.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/TileMaps/BunkerNew.tres" type="TileSet" id=7]
 [ext_resource path="res://Assets/TileMaps/BunkerBG.tres" type="TileSet" id=8]
 [ext_resource path="res://Scenes/GameObjects/BluePortal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/GameObjects/NPC3.tscn" type="PackedScene" id=10]
 
 [node name="1-1" instance=ExtResource( 1 )]
 script = ExtResource( 6 )
@@ -40,3 +41,6 @@ position = Vector2( 755, 576 )
 
 [node name="BluePortal" parent="." index="10" instance=ExtResource( 9 )]
 position = Vector2( 230, 577 )
+
+[node name="NPC" parent="." index="12" instance=ExtResource( 10 )]
+position = Vector2( 453, 368 )

@@ -4,6 +4,7 @@ using System;
 public class ThrowBox : KinematicBody2D
 {
     public Vector2 velocity = new Vector2();
+    public float gravity = 15;
     public override void _Ready()
     {
         
@@ -14,7 +15,7 @@ public class ThrowBox : KinematicBody2D
         // velocity decay/friction
         if (IsOnFloor()) velocity *= 0.9f;
         // apply gravity
-        velocity.y += 15;
+        velocity.y += gravity;
         // apply move
         velocity = MoveAndSlide(velocity, Vector2.Up);
         
