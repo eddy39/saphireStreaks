@@ -103,3 +103,5 @@ explosiveness = 0.52
 local_coords = false
 process_material = SubResource( 2 )
 texture = ExtResource( 3 )
+
+[node name="AudioPlayerPlayer" type="AudioStreamPlayer2D" parent="."]

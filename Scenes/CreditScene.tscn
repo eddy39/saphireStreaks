@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/MainMenu/MainMenuBtnNormal.png" type="Texture" id=1]
 [ext_resource path="res://Assets/LevelSprites/LevelBG.png" type="Texture" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://Scenes/GameObjects/NPC3.tscn" type="PackedScene" id=38]
 [ext_resource path="res://Scenes/GameObjects/NPC.tscn" type="PackedScene" id=39]
 [ext_resource path="res://Scenes/GameObjects/NPCFriend.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Assets/UI/ninepatch-dialoguebox.png" type="Texture" id=41]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -81,14 +82,14 @@ tile_data = PoolIntArray( -262139, 0, 0, -262134, 0, 0, -262132, 0, 0, -262128, 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D"]
 position = Vector2( 630, 120 )
 frames = SubResource( 2 )
-frame = 20
+frame = 22
 playing = true
 
 [node name="StartGameBtn" type="TextureButton" parent="."]
-margin_left = 427.0
-margin_top = 354.0
-margin_right = 691.0
-margin_bottom = 459.0
+margin_left = 496.0
+margin_top = 207.0
+margin_right = 760.0
+margin_bottom = 312.0
 texture_normal = ExtResource( 1 )
 expand = true
 
@@ -118,6 +119,83 @@ margin_left = 339.0
 margin_top = 221.0
 margin_right = 379.0
 margin_bottom = 261.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = -11.0
+margin_top = -4.0
+margin_right = 236.0
+margin_bottom = 72.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+margin_left = 31.0
+margin_top = 240.0
+margin_right = 318.0
+margin_bottom = 316.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+margin_left = 313.0
+margin_top = 366.0
+margin_right = 468.0
+margin_bottom = 442.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="."]
+margin_left = 668.0
+margin_top = 370.0
+margin_right = 777.0
+margin_bottom = 446.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
+
+[node name="NinePatchRect5" type="NinePatchRect" parent="."]
+margin_left = 881.0
+margin_top = 174.0
+margin_right = 1031.0
+margin_bottom = 250.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
+
+[node name="NinePatchRect6" type="NinePatchRect" parent="."]
+margin_left = 1011.0
+margin_top = -2.0
+margin_right = 1289.0
+margin_bottom = 74.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
+
+[node name="NinePatchRect7" type="NinePatchRect" parent="."]
+margin_left = 1132.0
+margin_top = 252.0
+margin_right = 1255.0
+margin_bottom = 328.0
+texture = ExtResource( 41 )
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 23
+patch_margin_bottom = 24
 
 [node name="Label" type="Label" parent="."]
 margin_left = 47.0

@@ -37,7 +37,7 @@ public class Player : KinematicBody2D
     public event Action AfterImageConsumed;
     public event Action AfterImageDetonated;
     
-    
+    public AudioStreamPlayer2D AudioPlayerPlayer;
     //private Sprite PlayerSprite;
     public List<ThrowBox> VacuumedBodies = new List<ThrowBox>();
     public float succtionForce = 30;
@@ -56,6 +56,7 @@ public class Player : KinematicBody2D
         VaccumPoint = GetNode<Node2D>("VacuumArea/VaccumPoint");
         JumpParticle = GetNode<Particles2D>("JumpParticle");
         MovementPartice = GetNode<Particles2D>("MovementParticle");
+        AudioPlayerPlayer = GetNode<AudioStreamPlayer2D>("AudioPlayerPlayer");
 
         // Connect Signals
         VacuumArea.Connect("body_entered", this, nameof(OnVacuumAreaBodyEntered));
@@ -132,6 +133,16 @@ public class Player : KinematicBody2D
     }
     public void UseVacuum()
     {
+        // check if audioPlayerPlayer playing
+        if (!AudioPlayerPlayer.Playing)
+        {
+            // load Telekintec sound
+            AudioPlayerPlayer.Stream = (AudioStream)ResourceLoader.Load("res://Assets/Sound/AfterImage/Telekinetic_Ability_Sound.mp3");
+            AudioPlayerPlayer.Play();
+        }
+
+        
+        // suck stuff in
         foreach (ThrowBox kinBody in VacuumedBodies)
         {
             // target is mouse position
@@ -149,6 +160,9 @@ public class Player : KinematicBody2D
     }
     public void VaccuumThrow()
     {
+        // stop audioPlayerPlayer
+        AudioPlayerPlayer.Stop();
+        // throw stuff away
         foreach (ThrowBox kinBody in VacuumedBodies)
         {
             // direction from player to mouse
