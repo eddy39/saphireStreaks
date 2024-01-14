@@ -19,7 +19,7 @@ public class Level3_1 : BaseLevel
         button = GetNode<StepButton>("StepButton");
         npc = GetNode<NPC>("NPC");
         // Setup npc
-        npc.dialogue = new Dialogue2();
+        npc.dialogue = new Dialogue3();
         ui.dialogueBox.dialogue = npc.dialogue;
         npc.OnDialogueInteractEvent += ui.dialogueBox.StartDialogue;
         // Connect
